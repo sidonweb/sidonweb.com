@@ -23,17 +23,17 @@ const graphik = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://leerob.io'),
+  metadataBase: new URL('http://siddharth-portfolio-7z4ok1uli-siddharth-singhs-projects.vercel.app'),
   title: {
-    default: 'Lee Robinson',
-    template: '%s | Lee Robinson',
+    default: 'Siddharth Singh',
+    template: '%s | Siddharth Singh',
   },
-  description: 'Developer, writer, and creator.',
+  description: 'Developer, Open-Source Contributor.',
   openGraph: {
-    title: 'Lee Robinson',
-    description: 'Developer, writer, and creator.',
-    url: 'https://leerob.io',
-    siteName: 'Lee Robinson',
+    title: 'Siddharth Singh',
+    description: 'Developer, Open-Source Contributor.',
+    url: 'http://siddharth-portfolio-7z4ok1uli-siddharth-singhs-projects.vercel.app',
+    siteName: 'Siddharth Singh',
     locale: 'en_US',
     type: 'website',
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: 'Lee Robinson',
+    title: 'Siddharth Singh',
     card: 'summary_large_image',
   },
   verification: {

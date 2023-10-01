@@ -3,9 +3,9 @@ import placeholder from './placeholder.jpg';
 import self from '../public/images/selfpotrait.jpg';
 import trophy from '../public/images/techmaniatrophy.jpg';
 import hackathon from '../public/images/hackathonpresentation.jpg'
-import wowgdsc from '../public/images/wowgdsc.jpg'
-import leetprofile from '../public/images/leetcodeprofile.png';
-import laptop from '../public/images/laptop.jpg'
+// import wowgdsc from '../public/images/wowgdsc.jpg'
+// import leetprofile from '../public/images/leetcodeprofile.png';
+// import laptop from '../public/images/laptop.jpg'
 function ArrowIcon() {
   return (
     <svg
@@ -31,16 +31,20 @@ export default function Page() {
       </p>
       <div className="columns-2 sm:columns-3 gap-4 my-8">
         <div className="relative h-40 mb-4">
-          <div className="px-6 py-4">
-            <p className="prose prose-neutral dark:prose-invert">
-             presenting team's project on stage in Smart India Hackathon at my college.
-            </p>
-          </div>
+        <Image
+            alt="placeholder"
+            src={placeholder}
+            fill
+            sizes="(min-width: 768px) 213px, 33vw"
+            priority
+            className="rounded-lg object-cover"
+          />
         </div>
         <div className="relative h-80 mb-4 sm:mb-0">
           <Image
-            alt="Me presenting on stage in Smart India Hackathon at my college"
-            src={hackathon}
+          alt="trophy that i won with my partner in college technical quiz competetion"
+          src={self}
+            
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -49,8 +53,8 @@ export default function Page() {
         </div>
         <div className="relative h-40 sm:h-80 sm:mb-4">
           <Image
-            alt="trophy that i won with my partner in college technical quiz competetion"
-            src={trophy}
+            alt="Me presenting on stage in Smart India Hackathon at my college"
+            src={hackathon}
             fill
             sizes="(max-width: 768px) 213px, 33vw"
             priority
@@ -58,23 +62,29 @@ export default function Page() {
           />
         </div>
         <div className="relative h-40 mb-4 sm:mb-0">
-        <div className="px-6 py-4">
-            <p className="prose prose-neutral dark:prose-invert">
-              trophy that I won with my partner in college technical quiz.
-            </p>
-          </div>
+        <Image
+            alt="placeholder"
+            src={placeholder}
+            fill
+            sizes="(min-width: 768px) 213px, 33vw"
+            priority
+            className="rounded-lg object-cover"
+          />
         </div>
         <div className="relative h-40 mb-4">
-          <div className="px-6 py-4">
-            <p className="prose prose-neutral dark:prose-invert">
-              myself xD
-            </p>
-          </div>
+        <Image
+            alt="placeholder"
+            src={placeholder}
+            fill
+            sizes="(min-width: 768px) 213px, 33vw"
+            priority
+            className="rounded-lg object-cover"
+          />
         </div>
         <div className="relative h-80">
           <Image
             alt="Myself xD"
-            src={self}
+            src={trophy}
             fill
             sizes="(min-width: 768px) 213px, 33vw"
             priority
