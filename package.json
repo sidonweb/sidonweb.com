@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run setup && next build",
+    "build": "next build",
     "build-only": "next build",
     "start": "next start",
     "setup": "node ./lib/setup.mjs"
@@ -19,7 +19,7 @@
     "googleapis": "^126.0.1",
     "kysely": "^0.26.3",
     "kysely-planetscale": "^1.4.0",
-    "next": "13.4.19",
+    "next": "^13.5.3",
     "next-auth": "0.0.0-manual.83c4ebd1",
     "next-contentlayer": "^0.3.4",
     "react": "18.2.0",
@@ -31,6 +31,7 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^3.0.1",
     "server-only": "^0.0.1",
+    "sharp": "^0.32.6",
     "shiki": "^0.14.4",
     "swr": "^2.2.2"
   },

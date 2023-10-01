@@ -5,23 +5,37 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { LayoutGroup, motion } from 'framer-motion';
 
+
 const navItems = {
   '/': {
     name: 'home',
+    isExternal: false,
+    externalUrl:'',
+  },
+  '/projects': {
+    name: 'projects',
+    isExternal: false,
+    externalUrl:'',
   },
   '/blog': {
     name: 'blog',
+    isExternal: false,
+    externalUrl:'',
   },
-  '/guestbook': {
-    name: 'guestbook',
+  '/resume': {
+    name: 'resume',
+    isExternal: true, // Add this flag to indicate it's an external link
+    externalUrl: 'https://drive.google.com/file/d/1vorlySmGaCtmWZx1GZYrDyfk7KBFx5qk/view?usp=drivesdk',
   },
 };
 
 export default function Navbar() {
   let pathname = usePathname() || '/';
-  if (pathname.includes('/blog/')) {
-    pathname = '/blog';
+  if (pathname.includes('/projects/')) {
+    pathname = '/projects';
   }
+
+
 
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
@@ -32,9 +46,24 @@ export default function Navbar() {
             id="nav"
           >
             <div className="flex flex-row space-x-0 pr-10">
-              {Object.entries(navItems).map(([path, { name }]) => {
+              {Object.entries(navItems).map(([path, { name, isExternal, externalUrl }]) => {
                 const isActive = path === pathname;
-                return (
+                return isExternal ? (
+                  <a
+                    key={path}
+                    href={externalUrl} // Use the external URL for the "Resume" link
+                    className={clsx(
+                      'transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle',
+                      {
+                        'text-neutral-500': !isActive,
+                      }
+                    )}
+                    target="_blank" // Open in a new tab
+                    rel="noopener noreferrer"
+                  >
+                    <span className="relative py-1 px-2">{name}</span>
+                  </a>
+                ) : (
                   <Link
                     key={path}
                     href={path}
