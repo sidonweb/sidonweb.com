@@ -8,7 +8,6 @@
     "setup": "node ./lib/setup.mjs"
   },
   "dependencies": {
-    "@planetscale/database": "^1.11.0",
     "@vercel/analytics": "^1.0.2",
     "@vercel/edge-config": "^0.2.1",
     "clsx": "^2.0.0",
