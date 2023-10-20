@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Siddharth Singh',
     description: 'Developer, Open-Source Contributor.',
-    url: 'http://siddharth-portfolio-7z4ok1uli-siddharth-singhs-projects.vercel.app',
+    url: 'http://sidonweb.com',
     siteName: 'Siddharth Singh',
     locale: 'en_US',
     type: 'website',
