@@ -25,7 +25,7 @@ function ArrowIcon() {
 export default function Page() {
   return (
     <section>
-      <h1 className="font-bold text-2xl mb-8 tracking-tighter">hello, I'm siddharth 👋</h1>
+      <h1 className="font-bold text-2xl mb-8 tracking-tighter">hello, I'm Narendra Modi 👋</h1>
       <p className="prose prose-neutral dark:prose-invert">
         Aspiring engineer sailing through realms of Software Development, Cloud Services & Open-Source Contribuitions.
       </p>
