@@ -52,26 +52,6 @@ export default function Page() {
                         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Express.js</span>
                     </div>
                 </div>
-                
-
-                {/* project 3 */}
-                <div className="rounded-lg overflow-hidden  ring-neutral-600 ring-2">
-                    <Image
-                        alt="Me presenting team's project on stage in Smart India Hackathon at my college."
-                        src={placeholder}
-                    />
-                    <div className="px-6 py-4">
-                        <div className="font-bold text-xl mb-2">project title</div>
-                        <p className="text-gray-700 prose prose-neutral dark:prose-invert text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                    </div>
-                    <div className="px-6 pt-4 pb-2">
-                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">tag1</span>
-                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">tag2</span>
-                        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">tag3</span>
-                    </div>
-                </div>
             </div>
         </section >
     );
