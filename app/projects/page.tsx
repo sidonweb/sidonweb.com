@@ -7,7 +7,7 @@ export default function Page() {
         <section>
             <h1 className="font-bold text-2xl mb-8 tracking-tighter">some projects I've done 👇</h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-2 gap-5">
                 {/* project 1 */}
                 <div className="rounded-lg overflow-hidden ring-neutral-600 ring-2">
                     <Image
