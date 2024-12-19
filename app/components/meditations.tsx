@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useRef, useState, useEffect } from "react";
 
 export default function Meditations() {
@@ -44,9 +45,12 @@ export default function Meditations() {
 
         <div className=" p-3 w-fit flex flex-col md:flex-row">
             <div className="group relative justify-center items-center">
-                <img
+                <Image
                     className="w-full lg:w-36 block rounded"
-                    src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXJ0dXhwcHc5Y25oZjNlZTVzaGJqZTBqOXk2OGZwdXZrN2M1ZWJ1NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Tg9jENf7x11tdJnyMQ/giphy.webp"
+                    width={500}
+                    height={500}
+                    src="/photos/chillguy.gif"
+                    priority
                     alt="Relaxation"
                 />
                 <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
@@ -78,7 +82,7 @@ export default function Meditations() {
                     </button>
                 </div>
             </div>
-            <div className="p-5">
+            <div className="pt-2 md:p-5">
                 <h3 className="text-lg">Reset your mind</h3>
                 <p>Four-minute guided imagery exercise to unwind and relax the mind.</p>
             </div>

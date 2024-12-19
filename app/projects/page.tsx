@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { projects } from "./project-data";
-
+import Image from "next/image";
 export const metadata: Metadata = {
   title: "Projects",
   description: "My Projects",
@@ -20,19 +20,30 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="block group hover:opacity-80 transition-opacity duration-200"
           >
-            <div className="flex flex-col">
-              <div className="w-full flex justify-between items-baseline">
-                <span className="text-black dark:text-white font-medium tracking-tight">
-                  {project.title}
-                </span>
-                <span className="text-neutral-600 dark:text-neutral-400 tabular-nums text-sm">
-                  {project.year}
-                </span>
+
+            <div className="flex flex-col md:flex-row items-center gap-5 mb-10">
+              <Image
+                alt="qbox"
+                src={project.imgurl}
+                width={500}
+                height={500}
+                className="rounded-lg w-full h-full md:w-56 md:h-32 object-fill"
+              />
+              <div className="flex flex-col">
+                <div className="w-full flex justify-between items-baseline">
+                  <span className="text-black dark:text-white font-medium tracking-tight">
+                    {project.title}
+                  </span>
+                  <span className="text-neutral-600 dark:text-neutral-400 tabular-nums text-sm">
+                    {project.year}
+                  </span>
+                </div>
+                <p className="prose prose-neutral dark:prose-invert pt-3">
+                  {project.description}
+                </p>
               </div>
-              <p className="prose prose-neutral dark:prose-invert pt-3">
-                {project.description}
-              </p>
             </div>
+
           </a>
         ))}
       </div>
