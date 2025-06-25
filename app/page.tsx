@@ -22,24 +22,16 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Hello! My name is Siddharth. I'm a competent software engineer, able to work effectively in a fast-paced, agile environment, and passionate about developing web applications.
+          Hello! I'm Siddharth Singh, a full-stack engineer based in Greater Noida. Over the last few years, I've been building smooth, responsive, and scalable web applications that turn ideas into working products — fast.
         </p>
         <p>
-          My interests extend to crafting websites, artificial intelligence, open-source & devops.
+          I work mostly with React, Next.js, TypeScript, and Tailwind. From real-time dashboards to feedback systems and clean landing pages, I focus on shipping UIs that feel right and are easy to extend.
         </p>
         <p>
-          I enjoy building full-stack, end-to-end web applications, mostly using Next.js. My latest creation?{" "}
-          <a
-            target="_blank"
-            href="https://qbox.live"
-          >
-            qbox
-          </a>
-          {" "}
-          — a sleek, minimalistic feedback board app designed to make gathering feedback simple and efficient!
+          My journey started in college, exploring full-stack projects and organizing events. While most waited for offers to come through, I jumped into startups, worked on real products, and built my skillset project by project.
         </p>
         <p>
-          Beyond this I'm a tech enthusiast who's gone from attending events to organizing them as part of core teams! Outside tech, I love traveling, capturing memories with my camera, and listening to {" "}
+          Beyond this I'm a tech enthusiast who's gone from attending events to organizing them as part of core teams! Outside tech, I love fitness, traveling, capturing memories with my camera, and listening to {" "}
           <a href={socialLinks.spotify} target="_blank">
             music
           </a>{" "}
