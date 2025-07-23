@@ -22,7 +22,7 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Hello! I'm Siddharth Singh, a full-stack engineer based in Greater Noida. Over the last few years, I've been building smooth, responsive, and scalable web applications that turn ideas into working products — fast.
+          Hello! I'm Siddharth Singh, a full-stack engineer based in Greater Noida. Over the last few years, I've been building smooth, responsive, and scalable web applications that turn ideas into working products, fast.
         </p>
         <p>
           I work mostly with React, Next.js, TypeScript, and Tailwind. From real-time dashboards to feedback systems and clean landing pages, I focus on shipping UIs that feel right and are easy to extend.
@@ -34,8 +34,7 @@ export default function Page() {
           Beyond this I'm a tech enthusiast who's gone from attending events to organizing them as part of core teams! Outside tech, I love fitness, traveling, capturing memories with my camera, and listening to {" "}
           <a href={socialLinks.spotify} target="_blank">
             music
-          </a>{" "}
-          — it's my perfect mix for inspiration and adventure.
+          </a>{", "}it's my perfect mix for inspiration and adventure.
         </p>
         <h3 className="flex flex-row items-center gap-2 te">
 
