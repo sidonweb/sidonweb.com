@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { socialLinks } from "./config";
+import Contact from "./components/contact";
 
 export default function Page() {
   return (
@@ -47,7 +48,7 @@ export default function Page() {
         <p>
           Got a cool idea or project? Whether it's dev-related or something totally different, just slide into my DMs! I'm always up for fresh ideas and collabs!
         </p>
-
+<Contact />
       </div>
     </section>
   );

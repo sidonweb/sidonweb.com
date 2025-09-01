@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
-import FlareCursor from "./components/custom-cursor";
+// import FlareCursor from "./components/custom-cursor";
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -85,7 +85,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="flex-auto min-w-0 mt-2 md:mt-6 flex flex-col px-6 sm:px-4 md:px-0 max-w-[640px] w-full">
-            <FlareCursor />
+            {/* <FlareCursor /> */}
             <Navbar />
             {children}
             <Footer />
