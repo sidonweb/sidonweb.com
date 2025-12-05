@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const images = ["/profile.jpg", "/profile2.jpg", "/profile3.jpg"];
+const images = ["/profile2.jpg", "/profile3.jpg", "/profile.jpg"];
 
 export default function ProfileSlideshow() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
