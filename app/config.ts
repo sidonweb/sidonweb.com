@@ -1,11 +1,12 @@
 export const metaData = {
   baseUrl: "https://sidonweb.com",
-  title: "sidonweb",
-  name: "Siddharth",
+  title: "Siddharth Singh | Full Stack Developer",
+  name: "Siddharth Singh",
   ogImage: "/opengraph-image.png",
   description:
-    "Full-stack Web Developer based in India. Passionate about Artificial Intelligence, open-source & tech.",
+    "Full Stack Developer specializing in React, Next.js, TypeScript, Node.js, and scalable real-time web applications. Experienced in building high-performance dashboards, operational systems, and end-to-end products used by thousands daily.",
 };
+
 
 export const socialLinks = {
   twitter: "https://x.com/siddonweb",
