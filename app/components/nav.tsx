@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ThemeSwitch } from "./theme-switch";
-import { metaData } from "../config";
 
 const navItems = {
   "/blogs": { name: "Blogs" },
@@ -15,7 +14,7 @@ export function Navbar() {
           <Link href="/" className="text-3xl font-semibold bg-gradient-to-r bg-clip-text  text-transparent 
             from-[#47a3f3]  via-purple-500 to-[#47a3f3]
             animate-text tracking-tight">
-              {metaData.title}
+              sidonweb
           </Link>
         </div>
         <div className="flex flex-row gap-4 mt-6 md:mt-0 md:ml-auto items-center">
