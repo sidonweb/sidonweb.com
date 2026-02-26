@@ -27,8 +27,8 @@ export default function Page() {
         <h2 className="mb-3 text-lg font-medium tracking-tight">
           How I Got Here</h2>
         <p>
-           I started by building small projects in college, but I quickly
-          realized I wanted to work on systems used by real people in real
+           I started by building small projects in college, but I
+          realized I wanted to work on apps used by real people in real
           environments. Joining a fast-moving product team gave me exposure to
           production challenges early, handling high-frequency events,
           debugging real-time inconsistencies, and improving performance where
