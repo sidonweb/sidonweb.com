@@ -23,7 +23,7 @@ export default function Projects() {
 
             <div className="flex flex-col md:flex-row items-center gap-5 mb-10">
               <Image
-                alt="qbox"
+                alt={`${project.title} Preview Thumbnail`}
                 src={project.imgurl}
                 width={500}
                 height={500}

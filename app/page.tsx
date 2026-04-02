@@ -2,13 +2,45 @@ import { socialLinks } from "./config";
 import Contact from "./components/contact";
 import Link from "next/link";
 import ProfileSlides from "./components/profile-slides";
-
+import { metaData } from "./config";
 
 export default function Page() {
 
   return (
     <section>
-
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebSite",
+                "url": metaData.baseUrl,
+                "name": metaData.name,
+                "description": metaData.description
+              },
+              {
+                "@type": "Person",
+                "name": metaData.name,
+                "url": metaData.baseUrl,
+                "image": `${metaData.baseUrl}${metaData.ogImage}`,
+                "jobTitle": "Full Stack Developer",
+                "worksFor": {
+                  "@type": "Organization",
+                  "name": "Houston Systems"
+                },
+                "sameAs": [
+                  socialLinks.twitter,
+                  socialLinks.github,
+                  socialLinks.linkedin
+                ]
+              }
+            ]
+          }),
+        }}
+      />
       <ProfileSlides />
 
       <h1 className="mb-8 text-2xl font-medium tracking-tight">

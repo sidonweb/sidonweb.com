@@ -1,5 +1,10 @@
 import { Claudeicon, Dockericon, Drizzleicon, Expressicon, Geminiicon, Githubicon, Giticon, Honoicon, Javaicon, Javascripticon, Mongodbicon, Mysqlicon, Netlifyicon, Nexticon, Nodejsicon, Openaiicon, Postgresqlicon, Prismaicon, Pythonicon, Reacthookicon, Reacticon, Redisicon, Reduxicon, Shadcn, Socketioicon, Supabaseicon, Tailwindicon, Typescripticon, Vercelicon, Zustandicon } from "app/lib/icons";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Tech Stack",
+  description: "The tools, languages, and frameworks I use to build and ship applications.",
+};
 
 type Skill = {
     name: string;

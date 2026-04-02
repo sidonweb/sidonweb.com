@@ -1,6 +1,11 @@
 import { ImageGrid } from 'app/components/image-grid'
 import React from 'react'
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: "Gallery",
+  description: "Some pictures taken by me.",
+};
 const images = [
   { src: "/photos/image1.jpeg", alt: "Beach view" },
   { src: "/photos/image2.jpeg", alt: "Mountain view"},
