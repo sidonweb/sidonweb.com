@@ -1,10 +1,10 @@
 export const metaData = {
   baseUrl: "https://sidonweb.com",
-  title: "Siddharth Singh | Full Stack Developer",
+  title: "Siddharth Singh | Full Stack Engineer",
   name: "Siddharth Singh",
   ogImage: "/opengraph-image.png",
   description:
-    "Full Stack Developer specializing in React, Next.js, TypeScript, Node.js, and scalable real-time web applications. Experienced in building high-performance dashboards, operational systems, and end-to-end products used by thousands daily.",
+    "Full Stack Engineer specializing in React, Next.js, TypeScript, Node.js, and scalable real-time web applications. Experienced in building high-performance dashboards, operational systems, and end-to-end products used by thousands daily.",
 };
 
 

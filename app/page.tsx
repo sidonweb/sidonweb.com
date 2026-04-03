@@ -3,6 +3,7 @@ import Contact from "./components/contact";
 import Link from "next/link";
 import ProfileSlides from "./components/profile-slides";
 import { metaData } from "./config";
+import Testimonials from "./components/testimonials";
 
 export default function Page() {
 
@@ -26,7 +27,7 @@ export default function Page() {
                 "name": metaData.name,
                 "url": metaData.baseUrl,
                 "image": `${metaData.baseUrl}${metaData.ogImage}`,
-                "jobTitle": "Full Stack Developer",
+                "jobTitle": "Full Stack Engineer",
                 "worksFor": {
                   "@type": "Organization",
                   "name": "Houston Systems"
@@ -49,24 +50,25 @@ export default function Page() {
 
       <div className="prose prose-neutral dark:prose-invert">
         <p>
-          Hi, I'm Siddharth Singh, a full-stack engineer based in Greater Noida, currently working at <Link href='https://www.housysit.com' > <i>Houston Systems</i></Link>. I've spent the last few years shipping web apps that are scalable & intuitive, and honestly, that's the part I love most. There's something satisfying about seeing your code handle real traffic and real problems.
+          Hi, I'm Siddharth Singh, a full-stack engineer based in Greater Noida, currently working at <Link href='https://www.housysit.com' > <i>Houston Systems</i></Link>. I've spent the last few years shipping web applications that are scalable & intuitive. My focus is on creating reliable, scalable web applications that hold up in real-world conditions.
         </p>
         <h2 className="mb-3 text-lg font-medium tracking-tight">
-          What I Work With</h2>
+          Work & Experiences
+        </h2>
+
         <p>
-          I mostly work with Javascript/TypeScript ( <Link href="/stack"><i>full stack here</i></Link> ). The stack just makes sense for building things fast without compromising on quality. I've built everything from real-time dashboards to anonymous feedback systems, and what I've learned is that the best interfaces are the ones people don't have to think about.
+          I mainly work with Javascript/TypeScript ( <Link href="/stack"><i>full stack here</i></Link> ), which helps me build fast without compromising on quality. Over time, I've built a range of products from real-time dashboards to applied AI tools using Python, GenAI, and frameworks like LangChain. Recently, my focus has been on building systems that can automate workflows and solve practical, real-world problems.
         </p>
-        <h2 className="mb-3 text-lg font-medium tracking-tight">
-          How I Got Here</h2>
+
         <p>
-           I started by building small projects in college, but I
-          realized I wanted to work on apps used by real people in real
-          environments. Joining a fast-moving product team gave me exposure to
-          production challenges early, handling high-frequency events,
-          debugging real-time inconsistencies, and improving performance where
-          milliseconds matter.
+          My journey started with just attending tech events during college, and gradually becoming part of the core teams organizing them. From the past year, I've been handling e-ticketing operations at IPL matches at New PCA Stadium, Chandigarh using software we built at my company, managing entry flow for 30,000 to 40,000 people within a few hours ( <Link href={"https://www.linkedin.com/posts/sidonweb_technology-stadiumoperations-ticketsolutions-activity-7322494088769916928-bFo7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2xQm0B-BL4caJx6TqAx-i1z4y_o8na_Xg"}>view post</Link> ).
         </p>
-        <p>I also went from simply attending tech events to helping organize them as part of core teams. That experience taught me a lot about collaboration, communication, and how much of tech is really about people, not just code.</p>
+
+        <p>
+          These experiences taught me the importance of coordination, clear communication, and staying calm under pressure. More importantly, they helped me understand how much of tech is really about people, not just code.
+        </p>
+        <h2 className="mb-3 text-lg font-medium tracking-tight">Testimonials</h2>
+        <Testimonials />
         <h2 className="mb-3 text-lg font-medium tracking-tight">Outside the Terminal</h2>
         <p>Outside tech, I love fitness, traveling, capturing memories with my {" "}
           <Link href='/gallery' ><i>camera</i></Link>{" (phone), "}and listening to {" "}
@@ -86,6 +88,6 @@ export default function Page() {
         </p>
         <Contact />
       </div>
-    </section>
+    </section >
   );
 }

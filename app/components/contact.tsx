@@ -1,5 +1,7 @@
 'use client';
 
+import { CalendarRange, Mail } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Contact() {
@@ -32,7 +34,7 @@ export default function Contact() {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      
+
       // Reset status after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
@@ -41,89 +43,101 @@ export default function Contact() {
   };
 
   return (
-    <div >
-      <h3 className="text-lg font-medium mb-4 text-neutral-900 dark:text-neutral-100">
-        Or directly message me here:
-      </h3>
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
-
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label 
-              htmlFor="name" 
-              className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
-            >
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#39FF14] focus:border-transparent transition-colors"
-              placeholder="Your full name"
-            />
-          </div>
-          
-          <div>
-            <label 
-              htmlFor="email" 
-              className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#39FF14] focus:border-transparent transition-colors"
-              placeholder="youremail@example.com"
-            />
-          </div>
-        </div>
-        
-        <div>
-          <label 
-            htmlFor="message" 
-            className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
-          >
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={4}
-            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#39FF14] focus:border-transparent transition-colors resize-none"
-            placeholder="Tell me about your project or just say hi!"
-          />
-        </div>
-        
-        <div className="flex items-center justify-between">
+    <div className="flex flex-col md:flex-row gap-4">
+      {/* LEFT: CTA */}
+      <div className="flex flex-col gap-4 ">
+        <Link href="https://cal.com/sidonweb/30min" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer" aria-label='Schedule a call with Siddharth Singh on Cal.com'>
           <button
-            type="submit"
-            disabled={isSubmitting}
-            className="px-6 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#39FF14] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+            className="group w-full h-full px-6 py-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition flex flex-col items-center justify-center gap-2"
           >
-            {isSubmitting ? 'Sending...' : 'Send Message'}
+            <CalendarRange className="size-8 opacity-80" />
+            <span className="font-medium">Schedule a Call</span>
           </button>
-          
-          {submitStatus === 'success' && (
-            <span className="text-green-600 dark:text-green-400 text-sm font-medium">
-              Message sent successfully! 🎉
-            </span>
-          )}
-          
-          {submitStatus === 'error' && (
-            <span className="text-red-600 dark:text-red-400 text-sm font-medium">
-              Failed to send. Please try again.
-            </span>
-          )}
-        </div>
-      </form>
+        </Link>
+
+        <Link href="mailto:heysid88@gmail.com" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer" aria-label='Send email to Siddharth Singh'>
+          <button
+            className="group w-full h-full px-6 py-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition flex flex-col items-center justify-center gap-2"
+          >
+            <Mail className="size-8 opacity-80" />
+            <span className="font-medium">Send an Email</span>
+          </button>
+        </Link>
+
+        {/* Optional subtle hint */}
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center">
+          Prefer writing directly? Use the form.
+        </p>
+      </div>
+
+      {/* RIGHT: FORM */}
+      <div className="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-5">
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                required
+                className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                required
+                className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
+                placeholder="youremail@example.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              Message
+            </label>
+            <textarea
+              name="message"
+              required
+              rows={4}
+              className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-700 rounded-md bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14] resize-none"
+              placeholder="Tell me about your project or just say hi!"
+            />
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:justify-between">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="px-6 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#39FF14] disabled:opacity-50 transition font-medium"
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
+
+            {submitStatus === 'success' && (
+              <span className="text-green-600 dark:text-green-400 text-sm font-medium">
+                Message sent successfully! 🎉
+              </span>
+            )}
+
+            {submitStatus === 'error' && (
+              <span className="text-red-600 dark:text-red-400 text-sm font-medium">
+                Failed to send. Please try again.
+              </span>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
-// import FlareCursor from "./components/custom-cursor";
+import ScrollToTop from "./components/scroll-to-top";
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -96,6 +96,7 @@ export default function RootLayout({
             <SpeedInsights />
       
           </main>
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
