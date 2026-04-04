@@ -34,7 +34,7 @@ export default function SpotifyCard() {
 
     useEffect(() => {
         const fetchData = () => {
-            fetch("/api/now-playing")
+            fetch("/api/spotify")
                 .then(res => res.json())
                 .then(setData)
                 .catch(err => console.error("Error fetching Spotify data:", err));
