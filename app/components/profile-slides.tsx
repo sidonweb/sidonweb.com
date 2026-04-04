@@ -19,14 +19,14 @@ export default function ProfileSlideshow() {
 
     return (
 
-        <div className="border border-neutral-200 dark:border-[#222] p-2 w-[150px] h-[150px] overflow-hidden shrink-0 relative group rounded-xl">
+        <div className="border border-neutral-200 dark:border-white/10 p-2 w-[150px] h-[150px] overflow-hidden shrink-0 relative group rounded-lg">
             {images.map((image, index) => (
                 <Image
                     key={index}
                     src={image}
                     alt={`Profile ${index + 1}`}
                     fill
-                    className={`object-cover absolute inset-0 transition-all duration-1000 rounded-xl p-1 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                    className={`object-cover absolute inset-0 transition-all duration-1000 rounded-lg p-1 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                         }`}
                 />
             ))}

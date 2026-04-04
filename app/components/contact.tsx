@@ -48,7 +48,7 @@ export default function Contact() {
       <div className="flex flex-col gap-4 ">
         <Link href="https://cal.com/sidonweb/30min" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer" aria-label='Schedule a call with Siddharth Singh on Cal.com'>
           <button
-            className="group w-full h-full px-6 py-4 bg-neutral-100 dark:bg-[#FFFFFF0A] text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-[#FFFFFF14] rounded-lg hover:bg-neutral-200 dark:hover:bg-[#FFFFFF14] transition flex flex-col items-center justify-center gap-2"
+            className="group w-full h-full px-6 py-4 bg-neutral-100 dark:bg-white/5 text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-white/10 rounded-lg hover:bg-neutral-200 dark:hover:bg-white/10 transition flex flex-col items-center justify-center gap-2"
           >
             <CalendarRange className="size-8 opacity-80" />
             <span className="font-medium">Schedule a Call</span>
@@ -57,7 +57,7 @@ export default function Contact() {
 
         <Link href="mailto:heysid88@gmail.com" style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer" aria-label='Send email to Siddharth Singh'>
           <button
-            className="group w-full h-full px-6 py-4 bg-neutral-100 dark:bg-[#FFFFFF0A] text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-[#FFFFFF14] rounded-lg hover:bg-neutral-200 dark:hover:bg-[#FFFFFF14] transition flex flex-col items-center justify-center gap-2"
+            className="group w-full h-full px-6 py-4 bg-neutral-100 dark:bg-white/5 text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-white/10 rounded-lg hover:bg-neutral-200 dark:hover:bg-white/10 transition flex flex-col items-center justify-center gap-2"
           >
             <Mail className="size-8 opacity-80" />
             <span className="font-medium">Send an Email</span>
@@ -71,46 +71,46 @@ export default function Contact() {
       </div>
 
       {/* RIGHT: FORM */}
-      <div className="bg-neutral-50 dark:bg-[#FFFFFF0A] border border-neutral-200 dark:border-[#FFFFFF0A] rounded-lg p-5">
+      <div className="bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-lg p-5">
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-[#FFFFFF14] dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2">
                 Full Name
               </label>
               <input
                 type="text"
                 name="name"
                 required
-                className="w-full px-3 py-2 border border-neutral-300 dark:border-[#FFFFFF14] rounded-md bg-white dark:bg-[#FFFFFF0A] text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
+                className="w-full px-3 py-2 border border-neutral-200 dark:border-white/10 rounded-md bg-white dark:bg-white/5 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
                 placeholder="Your full name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#FFFFFF14] dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2">
                 Email
               </label>
               <input
                 type="email"
                 name="email"
                 required
-                className="w-full px-3 py-2 border border-neutral-300 dark:border-[#FFFFFF14] rounded-md bg-white dark:bg-[#FFFFFF0A] text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
+                className="w-full px-3 py-2 border border-neutral-200 dark:border-white/10 rounded-md bg-white dark:bg-white/5 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
                 placeholder="youremail@example.com"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#FFFFFF14] dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-2">
               Message
             </label>
             <textarea
               name="message"
               required
               rows={4}
-              className="w-full px-3 py-2 border border-neutral-300 dark:border-[#FFFFFF14] rounded-md bg-white dark:bg-[#FFFFFF0A] text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14] resize-none"
+              className="w-full px-3 py-2 border border-neutral-200 dark:border-white/10 rounded-md bg-white dark:bg-white/5 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#39FF14] resize-none"
               placeholder="Tell me about your project or just say hi!"
             />
           </div>

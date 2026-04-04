@@ -41,7 +41,7 @@ export default function Footer() {
 
   return (
     <div className="flex flex-col gap-5">
-      <small className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-3 lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]">
+      <small className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-3 lg:mt-24 mt-16 text-neutral-900 dark:text-neutral-100">
         <div className="flex flex-row gap-1">
           <time>© {year}</time>
           <a

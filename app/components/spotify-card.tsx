@@ -45,7 +45,7 @@ export default function SpotifyCard() {
 
     if (!data) {
         return (
-            <div className="flex items-center gap-4 rounded-lg my-4 p-2 bg-black/[0.04] dark:bg-white/[0.04] border border-black/10 dark:border-white/[0.08] backdrop-blur-sm animate-pulse w-full cursor-pointer">
+            <div className="flex items-center gap-4 rounded-lg my-4 p-2 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 backdrop-blur-sm animate-pulse w-full cursor-pointer">
                 <div className="flex-shrink-0 w-16 h-16 relative">
                     <VinylDisc />
                 </div>
@@ -62,8 +62,8 @@ export default function SpotifyCard() {
     }
 
     return (
-        <Link href={data.songUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-            <div className="flex items-center gap-4 rounded-lg my-4 p-2 bg-neutral-100 dark:bg-[#FFFFFF0A] text-neutral-900 dark:text-neutral-100 border border-neutral-300 dark:border-[#FFFFFF14] hover:bg-neutral-200 dark:hover:bg-[#FFFFFF14] transition-[background,border-color] duration-200 w-full cursor-pointer">
+        <Link href={data.songUrl || "https://open.spotify.com"} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+            <div className="flex items-center gap-4 rounded-lg my-4 p-2 bg-neutral-100 dark:bg-white/5 text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-white/10 hover:bg-neutral-200 dark:hover:bg-white/10 transition-[background,border-color] duration-200 w-full cursor-pointer">
 
                 {/* Vinyl */}
                 <div className={`flex-shrink-0 w-16 h-16 relative ${data.isPlaying ? "vinyl-spinning" : ""}`}>
@@ -78,16 +78,16 @@ export default function SpotifyCard() {
                         {/* Status row */}
                         <div className="flex items-center gap-[5px] mt-[3px]">
                             <span className={`relative flex-shrink-0 w-[5px] h-[5px] rounded-full transition-colors duration-300 ${data.isPlaying ? "bg-[#1DB954] status-dot-active" : "bg-[#555]"}`} />
-                            <span className={`text-[0.72rem] tracking-[0.02em] ${data.isPlaying ? "text-[#1DB954]" : "text-[#666]"}`}>
+                            <span className={`text-[0.72rem] tracking-[0.02em] ${data.isPlaying ? "text-[#1DB954]" : "text-neutral-500 dark:text-neutral-400"}`}>
                                 {data.isPlaying ? "Listening now" : "Last played"}
                             </span>
                         </div>
 
-                        <p className="text-sm font-medium text-[#333] dark:text-[#D4D4D4] whitespace-nowrap overflow-hidden text-ellipsis m-0 leading-[1.3]">
-                            {data.title}
+                        <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 whitespace-nowrap overflow-hidden text-ellipsis m-0 leading-[1.3]">
+                            {data.title || "Not Playing"}
                         </p>
-                        <p className="text-[0.78rem] text-[#888] m-0 whitespace-nowrap overflow-hidden text-ellipsis leading-[1.3]">
-                            {data.artist}
+                        <p className="text-[0.78rem] text-neutral-600 dark:text-neutral-400 m-0 whitespace-nowrap overflow-hidden text-ellipsis leading-[1.3]">
+                            {data.artist || "Spotify"}
                         </p>
                     </div>
 

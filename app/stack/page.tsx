@@ -107,7 +107,7 @@ export default function Stack() {
                                 {section.items.map((item) => (
                                     <div
                                         key={item.name}
-                                        className="flex cursor-context-menu items-center gap-2 rounded-md bg-[#b4b4b4]/5 px-2 py-1 transition-all border border-[#393939]  hover:border-[#2e2e2e]"
+                                        className="flex cursor-context-menu items-center gap-2 rounded-md bg-neutral-100 dark:bg-white/5 px-2 py-1 transition-all border border-neutral-200 dark:border-white/10 hover:bg-neutral-200 dark:hover:bg-white/10"
                                     >
                                         {item.icon}
                                         <span className="prose prose-neutral dark:prose-invert text-xs">{item.name}</span>

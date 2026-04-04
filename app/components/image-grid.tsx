@@ -64,7 +64,7 @@ export const ImageGrid: React.FC<ImageGridProps> = ({
             aria-label="Close"
           >
             <FaCircleXmark
-              className={`h-6 w-6 text-[#D4D4D4] hover:opacity-75`}
+              className={`h-6 w-6 text-neutral-300 hover:opacity-75`}
             />
           </button>
 
@@ -97,7 +97,7 @@ export const ImageGrid: React.FC<ImageGridProps> = ({
                 aria-label="Previous image"
               >
                 <FaCircleChevronLeft
-                  className={`h-8 w-8 text-[#D4D4D4] hover:opacity-75`}
+                  className={`h-8 w-8 text-neutral-300 hover:opacity-75`}
                 />
               </button>
 
@@ -111,7 +111,7 @@ export const ImageGrid: React.FC<ImageGridProps> = ({
                 aria-label="Next image"
               >
                 <FaCircleChevronRight
-                  className={`h-8 w-8 text-[#D4D4D4] hover:opacity-75`}
+                  className={`h-8 w-8 text-neutral-300 hover:opacity-75`}
                 />
               </button>
             </>
