@@ -18,18 +18,19 @@ export default function ProfileSlideshow() {
     }, []);
 
     return (
-        <div className="relative w-[180px] h-[180px] lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 rounded-full overflow-hidden group">
+
+        <div className="border border-neutral-200 dark:border-[#222] p-2 w-[150px] h-[150px] overflow-hidden shrink-0 relative group rounded-xl">
             {images.map((image, index) => (
                 <Image
                     key={index}
                     src={image}
                     alt={`Profile ${index + 1}`}
                     fill
-                    className={`object-cover absolute inset-0 transition-all duration-1000 grayscale group-hover:grayscale-0 ${
-                        index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className={`object-cover absolute inset-0 transition-all duration-1000 rounded-xl p-1 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                        }`}
                 />
             ))}
         </div>
+
     );
 }

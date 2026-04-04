@@ -4,7 +4,8 @@
 
 ::-webkit-scrollbar {
   width: 0px;
-  background: transparent; /* make scrollbar transparent */
+  background: transparent;
+  /* make scrollbar transparent */
 }
 
 ::selection {
@@ -27,8 +28,8 @@
 
 /* Dark theme colors */
 .dark {
-  
-  background-color: #121212;
+
+  background-color: #060607;
   --sh-class: #4c97f8;
   --sh-identifier: white;
   --sh-sign: #8996a3;
@@ -74,7 +75,7 @@ html {
   content: "#";
 }
 
-.prose *:hover > .anchor {
+.prose *:hover>.anchor {
   @apply visible;
 }
 
@@ -113,7 +114,7 @@ h6 {
   @apply font-medium;
 }
 
-.prose > :first-child {
+.prose> :first-child {
   /* Override removing top margin, causing layout shift */
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
@@ -124,8 +125,10 @@ pre::-webkit-scrollbar {
 }
 
 pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Remove Safari input shadow on mobile */
@@ -148,7 +151,7 @@ table {
   white-space: nowrap;
 }
 
-.prose .callout > p {
+.prose .callout>p {
   margin: 0 !important;
 }
 
@@ -156,44 +159,44 @@ table {
   text-wrap: balance;
 }
 
-.flare {  
-  position: fixed;  
-  top: 0;  
-  left: 0;  
-  border: 2px solid #ffffff2b;  
-  border-radius: 50%;  
-  mix-blend-mode: difference;  
-  pointer-events: none;  
-  transform: translate(-50%, -50%);  
-  z-index: 999999 !important;  
-  backdrop-filter: blur(1px);  
-  background-color: rgba(0, 0, 0, 0.345);  
-  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;  
-  padding: 10px;  
-  display: flex;  
-  justify-content: center;  
-  align-items: center;  
-}  
-  
-@media screen and (max-width: 768px) {  
-  .flare {  
-    display: none;  
-    width: 0;  
-    height: 0;  
-    transition: width 0.2s ease-in-out, height 0.2s ease-in-out,  
-      opacity 0.2s ease-in-out;  
-  }  
-}  
-  
-.flare.pointer {  
-  display: none;  
-  opacity: 0 !important;  
-  transition: width 0.2s ease-in-out, height 0.2s ease-in-out,  
-    opacity 0.2s ease-in-out;  
+.flare {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 2px solid #ffffff2b;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 999999 !important;
+  backdrop-filter: blur(1px);
+  background-color: rgba(0, 0, 0, 0.345);
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dark .flare {  
-  background-color: rgb(255, 255, 255);  
+@media screen and (max-width: 768px) {
+  .flare {
+    display: none;
+    width: 0;
+    height: 0;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out,
+      opacity 0.2s ease-in-out;
+  }
+}
+
+.flare.pointer {
+  display: none;
+  opacity: 0 !important;
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+}
+
+.dark .flare {
+  background-color: rgb(255, 255, 255);
 }
 
 /* globals.css */
@@ -202,17 +205,112 @@ table {
   .animate-scroll {
     animation: scroll 40s linear infinite;
   }
+
   .animate-scroll-reverse {
     animation: scroll-reverse 40s linear infinite;
   }
 }
 
 @keyframes scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes scroll-reverse {
-  0%   { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Spotify card custom CSS */
+
+/* Vinyl grooves */
+.groove {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.groove-1 {
+  width: 60px;
+  height: 60px;
+}
+
+.groove-2 {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.groove-3 {
+  width: 44px;
+  height: 44px;
+}
+
+.groove-4 {
+  width: 36px;
+  height: 36px;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.groove-5 {
+  width: 28px;
+  height: 28px;
+}
+
+/* Vinyl disc shadows */
+.vinyl-disc {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.432),
+    0 4px 16px rgba(0, 0, 0, 0.216),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* Status dot ping animation */
+.status-dot-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 100%;
+  background: #1DB954;
+  opacity: 0.75;
+  animation: ping 1.4s ease-in-out infinite;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+
+  75%,
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Vinyl spin */
+@keyframes vinyl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vinyl-spinning {
+  animation: vinyl-spin 2.8s linear infinite;
 }

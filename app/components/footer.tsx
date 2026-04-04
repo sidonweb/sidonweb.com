@@ -37,31 +37,35 @@ function SocialLinks() {
 }
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <small className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-3 lg:mt-24 mt-16 text-[#1C1C1C]  dark:text-[#D4D4D4]">
-      <div className="flex flex-row gap-1">
-        <time>© {YEAR}</time>{" "}
-        <a
-          className="no-underline gap-2"
-          href={socialLinks.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {metaData.title}
+    <div className="flex flex-col gap-5">
+      <small className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-3 lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]">
+        <div className="flex flex-row gap-1">
+          <time>© {year}</time>
+          <a
+            className="no-underline"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {metaData.title}
+          </a>
+        </div>
 
-        </a>
-      </div>
+        <SocialLinks />
+      </small>
 
-      <style jsx>{`
-        @media screen and (max-width: 480px) {
-          article {
-            padding-top: 2rem;
-            padding-bottom: 4rem;
-          }
-        }
-      `}</style>
-
-      <SocialLinks />
-    </small>
+      {/* Dotted section BELOW footer */}
+      <div
+        className="w-full h-32 opacity-20 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, currentColor 1px, transparent 1px)",
+          backgroundSize: "10px 10px",
+        }}
+      />
+    </div>
   );
 }

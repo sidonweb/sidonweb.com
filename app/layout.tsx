@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cx(GeistSans.variable, GeistMono.variable,"scroll-smooth")}>
+    <html lang="en" className={cx(GeistSans.variable, GeistMono.variable, "scroll-smooth")}>
       <head>
         <link
           rel="alternate"
@@ -80,22 +80,21 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body className="antialiased flex flex-col items-center justify-center mx-auto mt-2 lg:mt-8 mb-20 lg:mb-40">
+      <body className="antialiased flex flex-col items-center justify-center mx-auto">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex-auto min-w-0 mt-2 md:mt-6 flex flex-col px-6 sm:px-4 md:px-0 max-w-[640px] w-full">
+          <main className="flex-auto min-w-0 flex flex-col px-6 sm:px-4 md:px-0 max-w-[680px] w-full">
             {/* <FlareCursor /> */}
             <Navbar />
             {children}
             <Footer />
-            <Analytics />
-            <SpeedInsights />
-      
           </main>
+          <Analytics />
+          <SpeedInsights />
           <ScrollToTop />
         </ThemeProvider>
       </body>
