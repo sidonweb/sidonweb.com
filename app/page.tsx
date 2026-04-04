@@ -3,7 +3,7 @@ import Contact from "./components/contact";
 import Link from "next/link";
 import { metaData } from "./config";
 import Testimonials from "./components/testimonials";
-import HeaderIntro from "./components/headerintro";
+import HeaderIntro from "./components/header-intro";
 import SpotifyCard from "./components/spotify-card";
 
 export default function Page() {

@@ -3,26 +3,26 @@
 import { FiEye } from "react-icons/fi";
 import { MdVerified } from "react-icons/md";
 import ProfileSlideshow from "./profile-slides";
-// import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SubtitleSlideshow from "./subtitle-slideshow";
 
 export default function HeaderIntro() {
-  // const [visitors, setVisitors] = useState<number | null>(null);
-  // const hasFetched = useRef(false);
+  const [visitors, setVisitors] = useState<number | null>(null);
+  const hasFetched = useRef(false);
 
-  // useEffect(() => {
-  //   if (hasFetched.current) return;
-  //   hasFetched.current = true;
+  useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
 
-  //   fetch("/api/visitors")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data && typeof data.count === "number") {
-  //         setVisitors(data.count + 9583);
-  //       }
-  //     })
-  //     .catch(() => setVisitors(9583));
-  // }, []);
+    fetch("/api/visitors")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.count === "number") {
+          setVisitors(data.count + 9583);
+        }
+      })
+      .catch(() => setVisitors(9583));
+  }, []);
 
   return (
     <div className="w-full relative pt-5">
@@ -34,7 +34,7 @@ export default function HeaderIntro() {
             <div className="flex items-center gap-1.5">
               <FiEye className="w-4 h-4" />
               <span className="min-w-[40px] text-right">
-                 10,890
+                {visitors !== null ? visitors.toLocaleString() : "0,000"}
               </span>
             </div>
           </div>
