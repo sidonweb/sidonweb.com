@@ -34,14 +34,16 @@ export default function SpotifyCard() {
 
     useEffect(() => {
         const fetchData = () => {
-            fetch("/api/spotify")
+            fetch("/api/now-playing")
                 .then(res => res.json())
-                .then(setData);
+                .then(setData)
+                .catch(err => console.error("Error fetching Spotify data:", err));
         };
         fetchData();
         const interval = setInterval(fetchData, 60000);
         return () => clearInterval(interval);
     }, []);
+
 
     if (!data) {
         return (
