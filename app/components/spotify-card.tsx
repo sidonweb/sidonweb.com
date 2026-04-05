@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaSpotify } from "react-icons/fa6";
+import MarqueeText from "./marquee-text";
 
 function VinylDisc({ albumImage, title }: { albumImage?: string; title?: string }) {
     return (
@@ -65,37 +66,28 @@ export default function SpotifyCard() {
 
     return (
         <Link href={data.songUrl || "https://open.spotify.com"} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-            <div className="flex items-center gap-4 rounded-lg my-4 p-2 bg-neutral-100 dark:bg-white/5 text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-white/10 hover:bg-neutral-200 dark:hover:bg-white/10 transition-[background,border-color] duration-200 w-full cursor-pointer">
+            <div className="flex items-center gap-3 rounded-lg my-4 p-2 bg-neutral-100 dark:bg-white/5 text-neutral-900 dark:text-neutral-100 border border-neutral-200 dark:border-white/10 hover:bg-neutral-200 dark:hover:bg-white/10 transition-[background,border-color] duration-200 w-full cursor-pointer overflow-hidden">
 
-                {/* Vinyl */}
+                {/* Vinyl — fixed left */}
                 <div className={`flex-shrink-0 w-16 h-16 relative ${data.isPlaying ? "vinyl-spinning" : ""}`}>
                     <VinylDisc albumImage={data.albumImage} title={data.title} />
                 </div>
 
-                <div className="flex flex-row justify-between items-center w-full">
-
-
-                    {/* Track info */}
-                    <div className="flex flex-col gap-0.5 min-w-0">
-                        {/* Status row */}
-                        <div className="flex items-center gap-[5px] mt-[3px]">
-                            <span className={`relative flex-shrink-0 w-[5px] h-[5px] rounded-full transition-colors duration-300 ${data.isPlaying ? "bg-[#1DB954] status-dot-active" : "bg-[#555]"}`} />
-                            <span className={`text-[0.72rem] tracking-[0.02em] ${data.isPlaying ? "text-[#1DB954]" : "text-neutral-500 dark:text-neutral-400"}`}>
-                                {data.isPlaying ? "Listening now" : "Last played"}
-                            </span>
-                        </div>
-
-                        <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 whitespace-nowrap overflow-hidden text-ellipsis m-0 leading-[1.3]">
-                            {data.title || "Not Playing"}
-                        </p>
-                        <p className="text-[0.78rem] text-neutral-600 dark:text-neutral-400 m-0 whitespace-nowrap overflow-hidden text-ellipsis leading-[1.3]">
-                            {data.artist || "Spotify"}
-                        </p>
+                {/* Track info — fills space BETWEEN vinyl and icon */}
+                <div className="flex flex-col gap-0.5 min-w-0 flex-1">
+                    <div className="flex items-center gap-[5px]">
+                        <span className={`relative flex-shrink-0 w-[5px] h-[5px] rounded-full transition-colors duration-300 ${data.isPlaying ? "bg-[#1DB954] status-dot-active" : "bg-[#555]"}`} />
+                        <span className={`text-[0.72rem] tracking-[0.02em] ${data.isPlaying ? "text-[#1DB954]" : "text-neutral-500 dark:text-neutral-400"}`}>
+                            {data.isPlaying ? "Listening now" : "Last played"}
+                        </span>
                     </div>
 
-                    <FaSpotify className="h-[40px] w-[40px]" />
-
+                    <MarqueeText text={data.title || "Not Playing"} className="text-sm font-medium text-neutral-900 dark:text-neutral-100 leading-[1.3]" />
+                    <MarqueeText text={data.artist || "Spotify"} className="text-[0.78rem] text-neutral-600 dark:text-neutral-400 leading-[1.3]" />
                 </div>
+
+                {/* Spotify icon — fixed right */}
+                <FaSpotify className="flex-shrink-0 w-8 h-8 text-neutral-400 dark:text-neutral-500" />
 
             </div>
         </Link>

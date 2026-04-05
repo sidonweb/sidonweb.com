@@ -21,7 +21,7 @@ export default function SubtitleSlideshow() {
   }, []);
 
   return (
-    <div className="relative h-6 mb-3 overflow-hidden">
+    <div className="relative h-10 overflow-hidden">
       {subtitles.map((subtitle, index) => (
         <p
           key={index}

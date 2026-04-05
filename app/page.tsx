@@ -5,6 +5,7 @@ import { metaData } from "./config";
 import Testimonials from "./components/testimonials";
 import HeaderIntro from "./components/header-intro";
 import SpotifyCard from "./components/spotify-card";
+import GithubActivity from "./components/github-activity";
 
 export default function Page() {
 
@@ -82,6 +83,8 @@ export default function Page() {
         <p>
           These experiences taught me the importance of coordination, clear communication, and staying calm under pressure. More importantly, they helped me understand how much of tech is really about people, not just code.
         </p>
+
+        <GithubActivity />
 
         <h2 className="mb-3 text-lg font-medium tracking-tight">Testimonials</h2>
 

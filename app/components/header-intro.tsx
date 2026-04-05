@@ -26,11 +26,13 @@ export default function HeaderIntro() {
 
   return (
     <div className="w-full relative pt-5">
-      <div className="relative z-10 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+      <div className="relative z-10 flex flex-row gap-3 sm:gap-6 items-stretch">
         <ProfileSlideshow />
 
-        <div className="flex flex-col justify-between h-full w-full">
-          <div className="flex justify-end items-center w-full text-neutral-500 text-sm mb-2">
+        {/* stretch to match ProfileSlideshow height, then space content top/bottom */}
+        <div className="flex flex-col justify-between min-w-0 w-full">
+          {/* TOP: visitor count pinned to top-right */}
+          <div className="flex justify-end items-center w-full text-neutral-500 text-sm">
             <div className="flex items-center gap-1.5">
               <FiEye className="w-4 h-4" />
               <span className="min-w-[40px] text-right">
@@ -39,14 +41,14 @@ export default function HeaderIntro() {
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
+          {/* BOTTOM: name + subtitle anchored to bottom */}
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <h1 className="text-xl sm:text-3xl font-medium tracking-tight text-neutral-900 dark:text-neutral-100 truncate">
                 Siddharth Singh
               </h1>
-              <MdVerified className="text-blue-500 w-5 h-5 sm:w-6 sm:h-6" />
+              <MdVerified className="text-blue-500 w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" />
             </div>
-
             <SubtitleSlideshow />
           </div>
         </div>

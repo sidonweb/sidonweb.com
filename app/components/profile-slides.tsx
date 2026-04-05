@@ -19,7 +19,7 @@ export default function ProfileSlideshow() {
 
     return (
 
-        <div className="border border-neutral-200 dark:border-white/10 p-2 w-[150px] h-[150px] overflow-hidden shrink-0 relative group rounded-lg">
+        <div className="border border-neutral-200 dark:border-white/10 p-2 w-32 h-32 overflow-hidden shrink-0 relative group rounded-lg">
             {images.map((image, index) => (
                 <Image
                     key={index}
