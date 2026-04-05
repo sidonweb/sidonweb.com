@@ -7,6 +7,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.18.9",
     "@types/node": "22.5.0",
     "@types/react": "18.3.4",
     "@types/react-dom": "18.3.0",

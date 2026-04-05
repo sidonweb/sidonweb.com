@@ -8,12 +8,15 @@ const navItems = {
 
 export function Navbar() {
   return (
-    <nav className=" py-5">
+    <nav className="py-5 sticky top-0 z-50 bg-white dark:bg-[#060607]">
       <div className="flex flex-col md:flex-row md:items-center justify-between">
         <div className="flex items-center">
-          <Link href="/" className="text-3xl font-semibold bg-gradient-to-r bg-clip-text  text-transparent 
-            from-[#47a3f3]  via-purple-500 to-[#47a3f3]
-            animate-text tracking-tight">
+          <Link
+            href="/"
+            className="text-3xl font-semibold bg-gradient-to-r bg-clip-text text-transparent 
+              from-[#47a3f3] via-purple-500 to-[#47a3f3]
+              animate-text tracking-tight"
+          >
             sidonweb
           </Link>
         </div>
@@ -30,7 +33,6 @@ export function Navbar() {
           <ThemeSwitch />
         </div>
       </div>
-
     </nav>
   );
 }
