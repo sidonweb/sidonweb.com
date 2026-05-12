@@ -1,8 +1,11 @@
-// app/api/visitors/route.ts
+import { Redis } from "@upstash/redis";
+
+const redis = Redis.fromEnv();
 
 export async function GET() {
-  const res = await fetch("https://api.counterapi.dev/v1/sidonweb/portfolio/up");
-  const data = await res.json();
+  const count = await redis.incr("portfolio-visits");
 
-  return Response.json(data);
+  return Response.json({
+    count,
+  });
 }

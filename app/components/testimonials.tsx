@@ -7,7 +7,7 @@ const testimonials = [
         quote: "It was a great working with you. The task was completed before expected TAT. The best is you were very flexible with the changes requested at any time during the whole project. Really loved your work."
     },
     {
-        pfp: "https://media.licdn.com/dms/image/v2/D5603AQF8GJ3lpX8n8A/profile-displayphoto-scale_200_200/B56Zv1dtR_KIAY-/0/1769349766257?e=1776902400&v=beta&t=o4PMeFWgVKxwZe5jhoft0m_WfbXzi6msRfLJEaVpgyc",
+        pfp: "/armaan.jpg",
         name: "Armaan Parvez",
         role: "Head of UI/UX @DinnovaAG",
         quote: "I’ve worked with Siddharth on both personal and client projects. He gets the problem fast, builds practical solutions and always thinks about the usability. Solid, reliable, and sharp. If you need a full stack dev, just hire him."

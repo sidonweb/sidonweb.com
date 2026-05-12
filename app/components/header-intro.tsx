@@ -15,17 +15,11 @@ export default function HeaderIntro() {
   const lottieRef2 = useRef<DotLottie | null>(null);
 
   useEffect(() => {
-    if (hasFetched.current) return;
-    hasFetched.current = true;
-
     fetch("/api/visitors")
       .then((res) => res.json())
       .then((data) => {
-        if (data && typeof data.count === "number") {
-          setVisitors(data.count + 9583);
-        }
-      })
-      .catch(() => setVisitors(9583));
+        setVisitors(data.count);
+      });
   }, []);
 
   return (
@@ -38,13 +32,13 @@ export default function HeaderIntro() {
           {/* TOP: visitor count pinned to top-right */}
           <div className="flex justify-end items-center w-full text-neutral-500 text-sm">
             <div className="flex items-center gap-1.5" title="Total visitor count" onMouseEnter={() => lottieRef1.current?.play()}
-                onMouseLeave={() => lottieRef1.current?.stop()}>
+              onMouseLeave={() => lottieRef1.current?.stop()}>
               <span className="min-w-[40px] text-right">
                 {visitors !== null ? visitors.toLocaleString() : "0,000"}
               </span>
               <div
                 className="w-5 h-5 flex-shrink-0 cursor-pointer"
-                
+
               >
                 <DotLottieReact
                   dotLottieRefCallback={(ref) => { lottieRef1.current = ref; }}
@@ -63,7 +57,7 @@ export default function HeaderIntro() {
                 Siddharth Singh
               </h1>
               {/* <MdVerified className="text-blue-500 w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" /> */}
- <div
+              <div
                 className="w-6 h-6 flex-shrink-0 cursor-pointer"
                 onMouseEnter={() => lottieRef2.current?.play()}
                 onMouseLeave={() => lottieRef2.current?.stop()}
