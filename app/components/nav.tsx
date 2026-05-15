@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ThemeSwitch } from "./theme-switch";
+import CommandPalette from "./command-palette";
+import GitHubStars from "./github-stars";
 
 const navItems = {
   "/blogs": { name: "Blogs" },
@@ -20,16 +22,18 @@ export function Navbar() {
             sidonweb
           </Link>
         </div>
-        <div className="flex flex-row gap-4 mt-6 md:mt-0 md:ml-auto items-center">
+        <div className="flex flex-row gap-2 mt-6 md:mt-0 md:ml-auto items-center">
           {Object.entries(navItems).map(([path, { name }]) => (
             <Link
               key={path}
               href={path}
-              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative"
+              className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative text-sm mr-2"
             >
               {name}
             </Link>
           ))}
+          <CommandPalette />
+          <GitHubStars />
           <ThemeSwitch />
         </div>
       </div>

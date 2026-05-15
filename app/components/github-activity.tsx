@@ -23,7 +23,7 @@ export default function GithubActivity() {
 
   const minimalTheme = {
     light: ["#ebedf0", "#c6c6c6", "#9c9c9c", "#717171", "#3d3d3d"],
-    dark: ["#161b22", "#272a30", "#464a53", "#747983", "#ffffff"],
+    dark: ["#101419", "#272a30", "#464a53", "#747983", "#ffffff"],
   };
 
   return (

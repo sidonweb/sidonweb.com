@@ -63,11 +63,11 @@ html {
 }
 
 .prose a {
-  @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] font-normal text-neutral-900 dark:text-neutral-100;
+  @apply transition-all decoration-lime-500 underline-offset-2 decoration-[0.1em] font-normal text-neutral-900 dark:text-neutral-100;
 }
 
 .prose a:hover {
-  @apply dark:decoration-neutral-400 decoration-neutral-600;
+  @apply decoration-lime-600;
 }
 
 .prose .anchor:after {

@@ -2,8 +2,8 @@
 const testimonials = [
     {
         pfp: "https://randomuser.me/api/portraits/lego/1.jpg",
-        name: "Anonymous",
-        role: "CEO at XYZ",
+        name: "Harshal S.",
+        role: "MedyMatic",
         quote: "It was a great working with you. The task was completed before expected TAT. The best is you were very flexible with the changes requested at any time during the whole project. Really loved your work."
     },
     {
@@ -14,7 +14,7 @@ const testimonials = [
     },
     {
         pfp: "https://randomuser.me/api/portraits/lego/2.jpg",
-        name: "Matt Ferguson",
+        name: "Matt F.",
         role: "Founder @ReadySetShoot",
         quote: "He has created a clean and intuitive experience for the website. Siddharth's communication is spot on, and he is always open to discussing ideas and refining things where needed. I look forward to collaborating with him on future projects."
     }

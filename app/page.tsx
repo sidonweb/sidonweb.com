@@ -77,7 +77,7 @@ export default function Page() {
         </p>
 
         <p>
-          My journey started with just attending tech events during college, and gradually becoming part of the core teams organizing them. From the past year, I've been handling e-ticketing operations at IPL matches at New PCA Stadium, Chandigarh using software we built at my company, managing entry flow for 30,000 to 40,000 people within a few hours ( <Link href={"https://www.linkedin.com/posts/sidonweb_technology-stadiumoperations-ticketsolutions-activity-7322494088769916928-bFo7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2xQm0B-BL4caJx6TqAx-i1z4y_o8na_Xg"}>view post</Link> ).
+          My journey started with just attending tech events during college, and gradually becoming part of the core teams organizing them. From the past year, I've been handling e-ticketing operations at IPL matches at New PCA Stadium, Chandigarh using software we built at my company, managing entry flow for 30,000 to 40,000 people within a few hours ( <Link className="italic" href={"https://www.linkedin.com/posts/sidonweb_technology-stadiumoperations-ticketsolutions-activity-7322494088769916928-bFo7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2xQm0B-BL4caJx6TqAx-i1z4y_o8na_Xg"}>view post</Link> ).
         </p>
 
         <p>
