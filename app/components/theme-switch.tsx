@@ -6,7 +6,15 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ThemeProviderProps } from "next-themes/dist/types";
 import { FaCircleHalfStroke } from "react-icons/fa6";
 
+
 const storageKey = "theme-preference";
+
+type ViewTransitionDocument = Document & {
+  startViewTransition?: (callback: () => void) => {
+    ready: Promise<void>;
+  };
+};
+
 
 export function ThemeProvider({
   children,
@@ -99,18 +107,20 @@ export const ThemeSwitch: React.FC = () => {
     newTheme: "light" | "dark"
   ) => {
     const root = document.documentElement;
+    const viewTransitionDocument =
+      document as ViewTransitionDocument;
 
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y)
     );
 
-    if (!document.startViewTransition) {
+    if (!viewTransitionDocument.startViewTransition) {
       reflectPreference(newTheme);
       return;
     }
 
-    await document.startViewTransition(() => {
+    await viewTransitionDocument.startViewTransition(() => {
       reflectPreference(newTheme);
     }).ready;
 
