@@ -44,17 +44,7 @@ export default function Page() {
           }),
         }}
       />
-      <div className="h-[120px]">
-        {/* Dotted section BELOW footer */}
-        <div
-          className="w-full h-full opacity-20 pointer-events-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, currentColor 1px, transparent 1px)",
-            backgroundSize: "10px 10px",
-          }}
-        />
-      </div>
+    
 
       <HeaderIntro />
 

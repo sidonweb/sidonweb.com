@@ -1,0 +1,234 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { projects } from "../project-data";
+import { metaData } from "app/config";
+
+interface ProjectPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata | undefined> {
+  const project = projects.find((p) => p.slug === params.slug);
+  if (!project) {
+    return;
+  }
+
+  const ogImage = `${metaData.baseUrl}/og?title=${encodeURIComponent(project.title)}`;
+
+  return {
+    title: `${project.title} | Work`,
+    description: project.description,
+    openGraph: {
+      title: `${project.title} — Siddharth Singh`,
+      description: project.description,
+      type: "article",
+      url: `${metaData.baseUrl}/work/${project.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} — Siddharth Singh`,
+      description: project.description,
+      images: [ogImage],
+    },
+  };
+}
+
+export default function ProjectDetail({ params }: ProjectPageProps) {
+  const project = projects.find((p) => p.slug === params.slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  return (
+    <section className="py-2 animate-[fadeIn_0.4s_ease-out]">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            name: project.title,
+            description: project.description,
+            creator: {
+              "@type": "Person",
+              name: metaData.name,
+            },
+            url: `${metaData.baseUrl}/work/${project.slug}`,
+            image: `${metaData.baseUrl}${project.imgurl}`,
+          }),
+        }}
+      />
+
+      {/* 1. Top Back Button */}
+      <div className="mb-6">
+        <Link
+          href="/work"
+          className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors group focus:outline-none"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            className="transition-transform duration-200 group-hover:-translate-x-0.5"
+          >
+            <path
+              d="M14 8H2M2 8L6 4M2 8L6 12"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Back to Work
+        </Link>
+      </div>
+
+      {/* 2. Project Media Container (Video/Gif/Image) */}
+      <div className="relative w-full aspect-video border border-neutral-200 dark:border-white/10 p-1 rounded-2xl overflow-hidden mb-8 bg-neutral-55 dark:bg-neutral-950">
+        <div className="relative w-full h-full border border-neutral-200 dark:border-white/10 rounded-xl overflow-hidden shadow-inner">
+          <Image
+            alt={`${project.title} demonstration`}
+            src={project.imgurl}
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+      </div>
+
+      {/* 3. Links Row (GitHub, Website, Post) */}
+      <div className="flex flex-wrap gap-2.5 mb-8">
+        {project.links.github && (
+          <a
+            href={project.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all focus:outline-none"
+          >
+            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+            GitHub
+          </a>
+        )}
+        {project.links.website && (
+          <a
+            href={project.links.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all focus:outline-none"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Website
+          </a>
+        )}
+        {project.links.post && (
+          <a
+            href={project.links.post}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all focus:outline-none"
+          >
+            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            Post
+          </a>
+        )}
+      </div>
+
+      {/* 4. Project Name & Description */}
+      <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
+        <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
+          {project.title}
+        </h2>
+        <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900 px-2 py-0.5 rounded border border-neutral-200 dark:border-neutral-800">
+          {project.year}
+        </span>
+      </div>
+
+      <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-10 text-base">
+        {project.description}
+      </p>
+
+      {/* 5. Bullet Points (Achievements & Details) */}
+      <div className="mb-10">
+        <h3 className="text-lg font-medium text-neutral-950 dark:text-white mb-4 tracking-tight">
+          Key Milestones & Technical Implementation
+        </h3>
+        <ul className="space-y-3">
+          {project.bullets.map((bullet, i) => (
+            <li key={i} className="flex gap-3 text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-neutral-400 dark:bg-neutral-600 shrink-0" />
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* 6. Tech Stack Used (In the last) */}
+      <div className="mb-12 border-t border-dashed border-neutral-300 dark:border-neutral-700 pt-8">
+        <h3 className="text-sm font-medium uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-4">
+          Technologies & Tools Used
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {project.stack.map((tech, i) => (
+            <span
+              key={i}
+              className="text-xs font-medium text-neutral-600 dark:text-neutral-400 bg-neutral-50 dark:bg-[#0b0c0d] border border-neutral-200 dark:border-neutral-800/80 rounded px-2.5 py-1 font-mono"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* 7. Bottom Back Button */}
+      <div className="flex justify-center border-t border-neutral-200 dark:border-neutral-800/60 pt-8 mt-8">
+        <Link
+          href="/work"
+          className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100 transition-colors group focus:outline-none"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            className="transition-transform duration-200 group-hover:-translate-x-0.5"
+          >
+            <path
+              d="M14 8H2M2 8L6 4M2 8L6 12"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Back to Work
+        </Link>
+      </div>
+    </section>
+  );
+}
