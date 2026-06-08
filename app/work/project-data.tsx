@@ -10,6 +10,7 @@ export interface Project {
     github?: string;
     website?: string;
     post?: string;
+    video?: string;
   };
   bullets: string[];
   stack: string[];
@@ -18,15 +19,16 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "Votecast",
-    status: "Building",
+    status: "Live",
     year: 2026,
     slug: "votecast",
     description:
       "A fault-tolerant, real-time polling system where votes are never lost. Built with an event-driven architecture using Apache Kafka for durable vote queuing, PostgreSQL for persistence, and WebSockets for live result updates.",
     url: "",
-    imgurl: "/monke-coding.gif",
+    imgurl: "/photos/VotecastThumbnail.gif",
     links: {
-     
+      video: "https://youtu.be/uCF9Uw1bbG0",
+      github: "https://github.com/sidonweb/votecast"
     },
     bullets: [
       "Architected an event-driven vote pipeline where each vote is published to a Kafka topic, consumed by a Node.js worker, and persisted to PostgreSQL — ensuring zero vote loss even under server failure.",

@@ -116,7 +116,7 @@ export default function ProjectDetail({ params }: ProjectPageProps) {
         </div>
       </div>
 
-      {/* 3. Links Row (GitHub, Website, Post) */}
+      {/* 3. Links Row (GitHub, Website, Post, Video) */}
       <div className="flex flex-wrap gap-2.5 mb-8">
         {project.links.github && (
           <a
@@ -152,9 +152,23 @@ export default function ProjectDetail({ params }: ProjectPageProps) {
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all focus:outline-none"
           >
             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
             Post
+          </a>
+        )}
+        {project.links.video && (
+          <a
+            href={project.links.video}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all focus:outline-none"
+          >
+            <svg className="w-3.5 h-3.5" viewBox="0 0 27 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26.1427 2.93734C25.9915 2.37352 25.695 1.85926 25.2827 1.44603C24.8704 1.0328 24.3568 0.73509 23.7933 0.582677C21.7053 0.00934319 13.352 1.01287e-05 13.352 1.01287e-05C13.352 1.01287e-05 5 -0.00932348 2.91067 0.538677C2.3479 0.698872 1.83576 1.00105 1.42342 1.41619C1.01108 1.83133 0.712383 2.3455 0.556002 2.90934C0.00533553 4.99734 1.95353e-06 9.32801 1.95353e-06 9.32801C1.95353e-06 9.32801 -0.00533136 13.68 0.541335 15.7467C0.848002 16.8893 1.748 17.792 2.892 18.1C5.00134 18.6733 13.332 18.6827 13.332 18.6827C13.332 18.6827 21.6853 18.692 23.7733 18.1453C24.3364 17.9919 24.8497 17.6944 25.2628 17.2822C25.6759 16.87 25.9746 16.3574 26.1293 15.7947C26.6813 13.708 26.6853 9.37868 26.6853 9.37868C26.6853 9.37868 26.712 5.02534 26.1427 2.93734ZM10.68 13.34L10.6867 5.34001L17.6293 9.34668L10.68 13.34Z" />
+            </svg>
+
+            Video
           </a>
         )}
       </div>
