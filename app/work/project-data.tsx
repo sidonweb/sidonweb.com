@@ -18,6 +18,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "DocMind",
+    status: "Live",
+    year: 2026,
+    slug: "docmind",
+    description:
+    "A production-ready RAG pipeline that lets you upload any PDF and ask questions about it in natural language. Built with a focus on retrieval quality and verifiability — every answer cites the exact source chunk it came from.",
+    url: "",
+    imgurl: "/photos/DocMindThumbnail.gif",
+    links: {
+      video: "https://youtu.be/LrcJf81iLjw",
+      github: "https://github.com/sidonweb/docmind"
+    },
+    bullets: [
+      "Built a full ingest pipeline — PDF parsing, 500-token chunking with overlap, batched OpenAI embeddings, and vector storage in pgvector — designed so any document is queryable within seconds of upload.",
+      "Implemented cosine similarity retrieval using pgvector's native <=> operator, with optional HNSW indexing for scale and per-document scoping for multi-tenant use.",
+      "Engineered a streaming generation layer using GPT-4o-mini with citation parsing — the model references numbered sources in its answer, which are mapped back to real chunks and surfaced as clickable references in the UI.",
+      "Built a Precision@3 evaluation script that scores retrieval quality against a test case suite — measuring whether the correct chunk appears in the top 3 results and logging citation rate across all test questions."
+    ],
+    stack: ["Node.js", "TypeScript", "OpenAI API", "pgvector", "PostgreSQL", "Prisma", "Docker"]
+  },
+  {
     title: "Votecast",
     status: "Live",
     year: 2026,
@@ -28,7 +49,8 @@ export const projects: Project[] = [
     imgurl: "/photos/VotecastThumbnail.gif",
     links: {
       video: "https://youtu.be/uCF9Uw1bbG0",
-      github: "https://github.com/sidonweb/votecast"
+      github: "https://github.com/sidonweb/votecast",
+      post: "https://www.linkedin.com/posts/sidonweb_i-once-gave-an-interview-where-the-interviewer-ugcPost-7469695985389199360-tamG/"
     },
     bullets: [
       "Architected an event-driven vote pipeline where each vote is published to a Kafka topic, consumed by a Node.js worker, and persisted to PostgreSQL — ensuring zero vote loss even under server failure.",
