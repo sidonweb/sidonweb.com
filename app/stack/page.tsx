@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tech Stack",
   description: "The tools, languages, and frameworks I use to build and ship applications.",
+  alternates: {
+    canonical: "/stack",
+  },
 };
 
 type Skill = {

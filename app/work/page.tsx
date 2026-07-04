@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Projects and work experience of Siddharth Singh — Full Stack Engineer specializing in React, Next.js, Node.js, TypeScript, and real-time systems.",
   },
   alternates: {
-    canonical: "https://sidonweb.com/work",
+    canonical: "/work",
   },
 };
 

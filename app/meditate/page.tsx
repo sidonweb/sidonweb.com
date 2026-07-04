@@ -1,9 +1,13 @@
 import Meditations from "app/components/meditations";
 import React from "react";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Meditate",
     description: "Imagery guided meditations.",
+    alternates: {
+        canonical: "/meditate",
+    },
 };
 
 export default function Reset() {

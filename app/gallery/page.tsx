@@ -5,6 +5,9 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "Gallery",
   description: "Some pictures taken by me.",
+  alternates: {
+    canonical: "/gallery",
+  },
 };
 const images = [
   { src: "/photos/image1.jpeg", alt: "Beach view" },

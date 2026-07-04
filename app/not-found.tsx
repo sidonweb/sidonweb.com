@@ -4,6 +4,10 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "404",
   description: "Error 404",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function NotFound() {

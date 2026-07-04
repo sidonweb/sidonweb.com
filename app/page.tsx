@@ -6,6 +6,13 @@ import Testimonials from "./components/testimonials";
 import HeaderIntro from "./components/header-intro";
 import SpotifyCard from "./components/spotify-card";
 import GithubActivity from "./components/github-activity";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Page() {
 
