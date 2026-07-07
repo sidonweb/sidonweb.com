@@ -3,9 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { projects } from "./project-data";
+import PageHeader from "../components/page-header";
 
-// ---------- Experience data ----------
 const experience = [
   {
     company: "Houston Systems",
@@ -19,17 +20,18 @@ const experience = [
       "Built and maintained frontend and backend systems for a Toll Management System handling 10K+ vehicles daily across 16+ lanes, supporting real-time lane operations.",
       "Developed backend APIs, database schemas, and rate limiting to reliably process high-frequency RFID and lane events.",
       "Implemented real-time frontend state management using Redux and WebSockets to reflect lane states, incidents, and operator actions without data inconsistencies.",
-      "Decoupled vehicle and payment flow using queues — reducing incident resolution time by 40% even during bank or payment service outages.",
+      "Decoupled vehicle and payment flow using queues, reducing incident resolution time by 40% even during bank or payment service outages.",
       "Migrated a legacy Bootstrap-based React site to TypeScript + Vite + React + Tailwind, improving LCP and overall page load time by 42%.",
     ],
     stack: [
       "React", "TypeScript", "Node.js", "Express",
       "MySQL", "Redis", "Kafka", "WebSockets", "Redux",
     ],
-  }, {
+  },
+  {
     company: "Keyaan Distilleries",
     role: "Graduate Engineering Trainee",
-
+    type: "",
     location: "Gorakhpur, Uttar Pradesh · On-Site",
     period: "Aug 2024 – Oct 2024",
     logo: "/logos/keyaan_distilleries_logo.jpg",
@@ -39,62 +41,51 @@ const experience = [
     ],
     stack: [
       "React", "TypeScript", "Node.js", "Express", "Next.js",
-      "TailwindCSS", "Search Engine Optimization (SEO)", "Performance Optimization",
+      "TailwindCSS", "SEO", "Performance Optimization",
     ],
   },
 ];
-
 
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group w-full h-full block text-neutral-900 dark:text-neutral-100 transition duration-200 overflow-hidden"
+      className="group block"
     >
-      {/* Thumbnail */}
-      <div className="relative w-full aspect-video border border-neutral-200 dark:border-white/10 p-1 rounded-xl">
-        <span className={`absolute top-3 left-3 z-10 text-xs ${project.status === "Live" ? "text-green-500" : "text-yellow-500"} bg-neutral-200/80 dark:bg-neutral-700/80 backdrop-blur-sm px-2 py-0.5 rounded`}>
+      <div className="relative aspect-video overflow-hidden rounded-xl ring-1 ring-black/5 dark:ring-white/10 bg-neutral-100 dark:bg-white/5">
+        <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/85 dark:bg-black/60 backdrop-blur px-2 py-0.5 text-[11px] font-medium text-neutral-700 dark:text-neutral-200">
+          <span className={`h-1.5 w-1.5 rounded-full ${project.status === "Live" ? "bg-green-500" : "bg-yellow-500"}`} />
           {project.status}
         </span>
-
-        <div className="relative w-full h-full border border-neutral-200 dark:border-white/10 rounded-lg overflow-hidden">
-          <Image
-            alt={`${project.title} preview`}
-            src={project.imgurl}
-            fill
-            className="object-cover transition-transform duration-300 grayscale group-hover:grayscale-0 group-hover:scale-[1.02]"
-          />
-        </div>
+        <Image
+          alt={`${project.title} preview`}
+          src={project.imgurl}
+          fill
+          sizes="(min-width: 640px) 320px, 100vw"
+          className="object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+        />
       </div>
 
-      {/* Info */}
-      <div className="p-1 pt-2 flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <span className="font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+      <div className="mt-3.5">
+        <div className="flex items-baseline justify-between gap-3">
+          <h3 className="font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
             {project.title}
+          </h3>
+          <span className="flex items-center gap-1.5 shrink-0 font-mono text-xs text-neutral-400 dark:text-neutral-500">
+            {project.year}
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-neutral-600 dark:group-hover:text-neutral-300" />
           </span>
         </div>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-2">
+        <p className="mt-1.5 line-clamp-2 text-[15px] leading-relaxed text-neutral-600 dark:text-neutral-400">
           {project.description}
         </p>
-        <span className="mt-1 text-sm text-neutral-900 dark:text-neutral-100 font-medium flex items-center gap-1">
-          View Details
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            className="inline-block transition-transform duration-200 group-hover:translate-x-0.5"
-          >
-            <path
-              d="M2 6H10M10 6L7 3M10 6L7 9"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
+        <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
+          {project.stack.slice(0, 4).map((tech) => (
+            <span key={tech} className="font-mono text-[11px] text-neutral-400 dark:text-neutral-500">
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </Link>
   );
@@ -104,101 +95,58 @@ function ExperienceRow({ job }: { job: (typeof experience)[0] }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
+    <div className="border-b border-neutral-200 dark:border-white/10 last:border-0">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-3 py-5 text-left"
+        className="group flex w-full items-center gap-4 py-5 text-left"
+        aria-expanded={open}
       >
-        {/* Logo / Initials */}
-        <div className=" border border-neutral-200 dark:border-white/10 p-1 rounded-xl">
-          <div className="w-10 h-10 shrink-0 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white flex items-center justify-center overflow-hidden p-0.5">
-            {job.logo ? (
-              <Image
-                src={job.logo}
-                alt={job.company}
-                width={40}
-                height={40}
-                className="object-cover"
-              />
-            ) : (
-              <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400">
-                {job.initials}
-              </span>
-            )}
-          </div>
+        <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl bg-white ring-1 ring-black/5 dark:ring-white/10">
+          {job.logo ? (
+            <Image src={job.logo} alt={job.company} width={48} height={48} className="h-full w-full object-cover" />
+          ) : (
+            <span className="text-sm font-semibold text-neutral-500">{job.initials}</span>
+          )}
         </div>
 
-        {/* Company + role */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-medium tracking-tight text-neutral-900 dark:text-neutral-100">
               {job.company}
             </span>
             {job.type && (
-              <span className="text-xs border border-neutral-300 dark:border-neutral-600 text-neutral-500 dark:text-neutral-400 px-1.5 py-0.5 rounded">
+              <span className="rounded-full border border-neutral-200 dark:border-white/15 px-2 py-0.5 text-[11px] text-neutral-500 dark:text-neutral-400">
                 {job.type}
               </span>
             )}
           </div>
-          <div className="text-sm text-neutral-500 dark:text-neutral-400 mt-0.5">
-            {job.role}
-          </div>
+          <div className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">{job.role}</div>
         </div>
 
-        {/* Period + location */}
-        <div className="text-right shrink-0 hidden sm:block">
-          <div className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-            {job.period}
-          </div>
-          <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
-            {job.location}
-          </div>
+        <div className="hidden shrink-0 text-right sm:block">
+          <div className="font-mono text-xs text-neutral-500 dark:text-neutral-400">{job.period}</div>
+          <div className="mt-0.5 text-xs text-neutral-400 dark:text-neutral-500">{job.location}</div>
         </div>
 
-        {/* Chevron */}
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          className={`shrink-0 text-neutral-400 transition-transform duration-300 ${open ? "rotate-180" : ""
-            }`}
-        >
-          <path
-            d="M4 6l4 4 4-4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <ChevronDown
+          className={`h-4 w-4 shrink-0 text-neutral-400 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        />
       </button>
 
-      {/* Expanded */}
-      <div
-        className={`grid transition-all duration-500 ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-          }`}
-      >
+      <div className={`grid transition-all duration-500 ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
         <div className="overflow-hidden">
-          <div className="pb-5">
-            <ul className="space-y-2 mb-4">
+          <div className="pb-6 pl-16">
+            <ul className="space-y-2.5">
               {job.bullets.map((b, i) => (
-                <li
-                  key={i}
-                  className="flex gap-2 text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed"
-                >
-                  <span className="mt-2 w-1 h-1 rounded-full bg-neutral-400 shrink-0" />
+                <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-neutral-700 dark:text-neutral-300">
+                  <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-neutral-400" />
                   {b}
                 </li>
               ))}
             </ul>
-
-            <div className="flex flex-wrap gap-2">
-              {job.stack.map((tech, i) => (
-                <span
-                  key={i}
-                  className="text-xs text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700 rounded-full px-2.5 py-0.5"
-                >
+            <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1">
+              {job.stack.map((tech) => (
+                <span key={tech} className="font-mono text-[11px] text-neutral-400 dark:text-neutral-500">
                   {tech}
                 </span>
               ))}
@@ -209,65 +157,65 @@ function ExperienceRow({ job }: { job: (typeof experience)[0] }) {
     </div>
   );
 }
-// ---------- Page ----------
+
+const tabs = [
+  { id: "projects" as const, label: "Projects", count: projects.length },
+  { id: "experiences" as const, label: "Experience", count: experience.length },
+];
 
 export default function WorkClient() {
   const [activeTab, setActiveTab] = useState<"projects" | "experiences">("projects");
 
   return (
-    <section className="relative min-h-[400px]">
-      {/* Toggle Selector */}
-      <div className="flex justify-start md:justify-end mb-10">
-        <div className="relative flex p-1 bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg w-full max-w-[280px]">
-          {/* Sliding dynamic background */}
-          <div
-            className={`absolute top-1 bottom-1 rounded-lg bg-white dark:bg-neutral-800/80 shadow-sm transition-all duration-300 ease-out`}
-            style={{
-              left: activeTab === "projects" ? "4px" : "calc(50% - 4px)",
-              width: "calc(50%)",
-            }}
-          />
-          <button
-            onClick={() => setActiveTab("projects")}
-            className={`relative z-10 w-1/2 py-1.5 text-xs font-medium rounded-full text-center transition-colors duration-300 focus:outline-none ${activeTab === "projects"
-              ? "text-neutral-950 dark:text-white"
-              : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
+    <section className="min-h-[400px]">
+      <PageHeader
+        label="Work"
+        title="Projects & experience"
+        description="A selection of things I've designed, built, and shipped, plus where I've worked along the way."
+      />
+
+      {/* Tab switcher */}
+      <div className="mt-8 flex items-center gap-7 border-b border-neutral-200 dark:border-white/10">
+        {tabs.map((tab) => {
+          const active = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`relative -mb-px flex items-center gap-2 pb-3 text-sm font-medium transition-colors ${
+                active
+                  ? "text-neutral-900 dark:text-neutral-100"
+                  : "text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
               }`}
-          >
-            Projects
-          </button>
-          <button
-            onClick={() => setActiveTab("experiences")}
-            className={`relative z-10 w-1/2 py-1.5 text-xs font-medium rounded-full text-center transition-colors duration-300 focus:outline-none ${activeTab === "experiences"
-              ? "text-neutral-950 dark:text-white"
-              : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
-              }`}
-          >
-            Experiences
-          </button>
-        </div>
+            >
+              {tab.label}
+              <span className={`rounded-full px-1.5 py-0.5 font-mono text-[11px] ${active ? "bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900" : "bg-neutral-100 text-neutral-400 dark:bg-white/10 dark:text-neutral-500"}`}>
+                {tab.count}
+              </span>
+              {active && (
+                <span className="absolute -bottom-px left-0 h-0.5 w-full rounded-full bg-neutral-900 dark:bg-neutral-100" />
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Tab Contents with entry animations */}
-      {activeTab === "projects" ? (
-        <div className="space-y-6 animate-[fadeIn_0.3s_ease-out]">
-          <h1 className="mb-8 text-2xl font-medium tracking-tight">A look at my projects</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {/* Content */}
+      <div className="mt-10">
+        {activeTab === "projects" ? (
+          <div className="grid grid-cols-1 gap-x-6 gap-y-9 sm:grid-cols-2 animate-[fadeIn_0.3s_ease-out]">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} />
             ))}
           </div>
-        </div>
-      ) : (
-        <div className="space-y-6 animate-[fadeIn_0.3s_ease-out]">
-          <h2 className="mb-6 text-2xl font-medium tracking-tight">Experiences so far</h2>
-          <div>
+        ) : (
+          <div className="animate-[fadeIn_0.3s_ease-out]">
             {experience.map((job, index) => (
               <ExperienceRow key={index} job={job} />
             ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }

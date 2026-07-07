@@ -1,74 +1,50 @@
-"use client";
 const testimonials = [
     {
         pfp: "https://randomuser.me/api/portraits/lego/1.jpg",
         name: "Harshal S.",
         role: "MedyMatic",
-        quote: "It was a great working with you. The task was completed before expected TAT. The best is you were very flexible with the changes requested at any time during the whole project. Really loved your work."
+        quote: "Great working with you. The task was done before the expected timeline, and you stayed flexible with every change I asked for along the way. Really loved your work."
     },
     {
         pfp: "/armaan.jpg",
         name: "Armaan Parvez",
         role: "Head of UI/UX @DinnovaAG",
-        quote: "I’ve worked with Siddharth on both personal and client projects. He gets the problem fast, builds practical solutions and always thinks about the usability. Solid, reliable, and sharp. If you need a full stack dev, just hire him."
+        quote: "I've worked with Siddharth on both personal and client projects. He gets the problem fast, builds practical solutions, and always thinks about usability. Solid, reliable, and sharp. If you need a full-stack dev, just hire him."
     },
     {
         pfp: "https://randomuser.me/api/portraits/lego/2.jpg",
         name: "Matt F.",
         role: "Founder @ReadySetShoot",
-        quote: "He has created a clean and intuitive experience for the website. Siddharth's communication is spot on, and he is always open to discussing ideas and refining things where needed. I look forward to collaborating with him on future projects."
+        quote: "He created a clean, intuitive experience for the website. His communication is spot on and he's always open to refining things where needed. Looking forward to working with him again."
     }
-]
-
-function TestimonialCard({ t }: any) {
-    return (
-        <div className="min-w-[320px] max-w-[320px] flex flex-col justify-between gap-4 p-4">
-            <p className="text-sm text-neutral-700 dark:text-neutral-300 m-0 p-0">
-                {t.quote}
-            </p>
-            <div className="flex flex-row justify-start items-center gap-3 mt-4">
-                <img
-                    src={t.pfp}
-                    className="w-10 h-10 rounded-full object-cover"
-                    alt={t.name}
-                />
-                <div className="flex flex-col justify-between items-start">
-                    <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 m-0 p-0">
-                        {t.name}
-                    </p>
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 m-0 p-0">
-                        {t.role}
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    );
-}
-
-function Row({ reverse = false }: { reverse?: boolean }) {
-    const loopData = [...testimonials, ...testimonials]; // infinite feel
-
-    return (
-        <div className="overflow-hidden relative
-  [mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]">
-            <div
-                className={`flex gap-4 w-max ${reverse ? "animate-scroll-reverse" : "animate-scroll"
-                    } hover:[animation-play-state:paused]`}
-            >
-                {loopData.map((t, i) => (
-                    <TestimonialCard key={i} t={t} />
-                ))}
-            </div>
-        </div>
-    );
-}
+];
 
 export default function Testimonials() {
     return (
-        <div className="flex flex-col gap-6">
-            <Row />          {/* left → right */}
-            {/* <Row reverse /> */}
+        <div className="flex flex-col gap-9">
+            {testimonials.map((t, i) => (
+                <figure key={i}>
+                    <blockquote className="text-[17px] leading-relaxed text-neutral-700 dark:text-neutral-300">
+                        &ldquo;{t.quote}&rdquo;
+                    </blockquote>
+                    <figcaption className="mt-3.5 flex items-center gap-3">
+                        <img
+                            src={t.pfp}
+                            className="h-9 w-9 rounded-full object-cover bg-neutral-100 dark:bg-white/5"
+                            alt={t.name}
+                            loading="lazy"
+                        />
+                        <div className="leading-tight">
+                            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                                {t.name}
+                            </p>
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                                {t.role}
+                            </p>
+                        </div>
+                    </figcaption>
+                </figure>
+            ))}
         </div>
     );
 }

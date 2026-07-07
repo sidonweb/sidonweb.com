@@ -12,21 +12,23 @@ export default function ProfileSlideshow() {
             setCurrentImageIndex((prevIndex) =>
                 (prevIndex + 1) % images.length
             );
-        }, 8000); // Change image every 6 seconds
+        }, 8000);
 
         return () => clearInterval(interval);
     }, []);
 
     return (
 
-        <div className="border border-neutral-200 dark:border-white/10 p-2 w-32 h-32 overflow-hidden shrink-0 relative group rounded-lg">
+        <div className="relative w-28 h-28 sm:w-32 sm:h-32 shrink-0 overflow-hidden rounded-2xl ring-1 ring-black/5 dark:ring-white/10 shadow-sm">
             {images.map((image, index) => (
                 <Image
                     key={index}
                     src={image}
-                    alt={`Profile ${index + 1}`}
+                    alt="Siddharth Singh"
                     fill
-                    className={`object-cover absolute inset-0 transition-all duration-1000 rounded-lg p-1 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                    sizes="128px"
+                    priority={index === 0}
+                    className={`object-cover absolute inset-0 transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                         }`}
                 />
             ))}

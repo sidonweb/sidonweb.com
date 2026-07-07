@@ -10,8 +10,7 @@ export const metaData = {
 
 export const socialLinks = {
   twitter: "https://x.com/siddonweb",
-  github: "https://github.com/sidonweb/sidonweb.com",
+  github: "https://github.com/sidonweb",
   linkedin: "https://www.linkedin.com/in/sidonweb",
   email: "mailto:heysid88@gmail.com",
-  spotify: "https://open.spotify.com/user/31ksrnsgfosqfc5qxdhpclzsatcy?si=243083f91bd1484f"
 };

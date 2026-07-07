@@ -19,6 +19,7 @@ import {
   Search,
   Sun,
   Swords,
+  Waves,
 } from "lucide-react";
 
 import {
@@ -191,6 +192,15 @@ export default function CommandPalette() {
       icon: <Camera size={16} />,
       group: "Menu",
       action: () => router.push("/gallery"),
+    },
+
+    {
+      id: "meditate",
+      label: "Meditate",
+      description: "Take a short break",
+      icon: <Waves size={16} />,
+      group: "Menu",
+      action: () => router.push("/meditate"),
     },
 
     // Social

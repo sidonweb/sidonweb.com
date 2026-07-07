@@ -1,23 +1,23 @@
-import { socialLinks } from "./config";
-import Contact from "./components/contact";
 import Link from "next/link";
-import { metaData } from "./config";
-import Testimonials from "./components/testimonials";
-import HeaderIntro from "./components/header-intro";
-import SpotifyCard from "./components/spotify-card";
+import { socialLinks, metaData } from "./config";
+import Hero from "./components/hero";
+import { Section } from "./components/section";
+import FeaturedWork from "./components/featured-work";
 import GithubActivity from "./components/github-activity";
+import Testimonials from "./components/testimonials";
+import Contact from "./components/contact";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
 };
 
-export default function Page() {
+const linkClass =
+  "font-medium text-neutral-900 dark:text-neutral-100 underline decoration-neutral-300 dark:decoration-neutral-600 underline-offset-4 hover:decoration-neutral-900 dark:hover:decoration-neutral-100 transition";
 
+export default function Page() {
   return (
-    <section className="">
+    <section>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -27,92 +27,85 @@ export default function Page() {
             "@graph": [
               {
                 "@type": "WebSite",
-                "url": metaData.baseUrl,
-                "name": metaData.name,
-                "description": metaData.description
+                url: metaData.baseUrl,
+                name: metaData.name,
+                description: metaData.description,
               },
               {
                 "@type": "Person",
-                "name": metaData.name,
-                "url": metaData.baseUrl,
-                "image": `${metaData.baseUrl}${metaData.ogImage}`,
-                "jobTitle": "Full Stack Engineer",
-                "worksFor": {
-                  "@type": "Organization",
-                  "name": "Houston Systems"
-                },
-                "sameAs": [
+                name: metaData.name,
+                url: metaData.baseUrl,
+                image: `${metaData.baseUrl}${metaData.ogImage}`,
+                jobTitle: "Full Stack Engineer",
+                worksFor: { "@type": "Organization", name: "Houston Systems" },
+                sameAs: [
                   socialLinks.twitter,
                   socialLinks.github,
-                  socialLinks.linkedin
-                ]
-              }
-            ]
+                  socialLinks.linkedin,
+                ],
+              },
+            ],
           }),
         }}
       />
-    
 
-      <HeaderIntro />
+      <Hero />
 
+      <div className="mt-20 flex flex-col gap-16 sm:gap-20">
+        {/* ABOUT */}
+        <Section label="About">
+          <div className="space-y-4 leading-relaxed text-neutral-700 dark:text-neutral-300">
+            <p>
+              I work across the JavaScript and TypeScript stack (
+              <Link href="/stack" className={linkClass}>
+                full stack here
+              </Link>
+              ), which lets me move quickly without cutting corners. I&apos;ve
+              built real-time dashboards, internal tools, and a few AI features
+              with Python, GenAI, and LangChain. These days most of my time goes
+              into systems that take the repetitive work out of a workflow.
+            </p>
+            <p>
+              I got into tech by helping run events in college, and slowly ended
+              up leading the teams behind them. This past year I ran e-ticketing
+              for IPL matches at New PCA Stadium in Chandigarh, handling entry
+              for 30,000 to 40,000 people in a couple of hours (
+              <Link
+                href="https://www.linkedin.com/posts/sidonweb_technology-stadiumoperations-ticketsolutions-activity-7322494088769916928-bFo7"
+                target="_blank"
+                className={linkClass}
+              >
+                view post
+              </Link>
+              ). It taught me to stay calm when things break, and that most of
+              the work is really about people, not code.
+            </p>
+          </div>
+        </Section>
 
+        {/* SELECTED WORK */}
+        <Section label="Work">
+          <FeaturedWork limit={3} />
+        </Section>
 
-      <div className="prose prose-neutral dark:prose-invert">
-        <h2 className="mb-3 text-lg font-medium tracking-tight">
-          Building functional, scalable web experiences.
-        </h2>
-        <p>
-          Hi, I'm Siddharth Singh, a full-stack engineer based in Greater Noida, currently working at <Link href='https://www.housysit.com' > <i>Houston Systems</i></Link>. I've spent the last few years shipping web applications that are scalable & intuitive. My focus is on creating reliable, scalable web applications that hold up in real-world conditions.
-        </p>
+        {/* ACTIVITY */}
+        <Section label="Activity">
+          <p className="mb-5 leading-relaxed text-neutral-600 dark:text-neutral-400">
+            I build in the open. Here&apos;s my GitHub over the last year.
+          </p>
+          <GithubActivity />
+        </Section>
 
-        <h2 className="mb-3 text-lg font-medium tracking-tight">
-          Work & Experiences
-        </h2>
+        {/* TESTIMONIALS */}
+        <Section label="Words">
+          <Testimonials />
+        </Section>
 
-        <p>
-          I mainly work with Javascript/TypeScript ( <Link href="/stack"><i>full stack here</i></Link> ), which helps me build fast without compromising on quality. Over time, I've built a range of products from real-time dashboards to applied AI tools using Python, GenAI, and frameworks like LangChain. Recently, my focus has been on building systems that can automate workflows and solve practical, real-world problems.
-        </p>
-
-        <p>
-          My journey started with just attending tech events during college, and gradually becoming part of the core teams organizing them. From the past year, I've been handling e-ticketing operations at IPL matches at New PCA Stadium, Chandigarh using software we built at my company, managing entry flow for 30,000 to 40,000 people within a few hours ( <Link className="italic" href={"https://www.linkedin.com/posts/sidonweb_technology-stadiumoperations-ticketsolutions-activity-7322494088769916928-bFo7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2xQm0B-BL4caJx6TqAx-i1z4y_o8na_Xg"}>view post</Link> ).
-        </p>
-
-        <p>
-          These experiences taught me the importance of coordination, clear communication, and staying calm under pressure. More importantly, they helped me understand how much of tech is really about people, not just code.
-        </p>
-
-        <GithubActivity />
-
-        <h2 className="mb-3 text-lg font-medium tracking-tight">Testimonials</h2>
-
-        <Testimonials />
-
-        <h2 className="mb-3 text-lg font-medium tracking-tight">Outside the Terminal</h2>
-
-        <p>Outside tech, I love fitness, traveling, capturing memories with my {" "}
-          <Link href='/gallery' ><i>camera</i></Link>{" (phone), "}and listening to {" "}
-          <Link href={socialLinks.spotify} target="_blank">
-            <i>music</i>
-          </Link>{", "}it's my perfect mix for inspiration and adventure.
-        </p>
-
-        <SpotifyCard />
-
-        <h2 className="flex flex-row items-center gap-2 mb-3 text-lg font-medium tracking-tight">
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-          </span>
-          {"Available for Work"}
-        </h2>
-        <p>
-          Got a cool idea or project? Whether it's dev-related or something totally different, just slide into my DMs! I'm always up for fresh ideas and collabs!
-        </p>
-
-        <Contact />
-
+        {/* CONTACT */}
+        <Section id="contact" label="Contact">
+          <Contact />
+        </Section>
       </div>
-
-    </section >
+    </section>
   );
 }
