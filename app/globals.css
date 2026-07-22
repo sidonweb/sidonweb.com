@@ -1,0 +1,225 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Neutral dark palette */
+  --color-bg: #0a0a0b;
+  --color-bg-2: #101012;
+  --color-surface: #141417;
+  --color-surface-2: #1c1c20;
+  --color-surface-3: #2a2a30;
+  --color-border: #26262b;
+  --color-border-strong: #3a3a42;
+  --color-border-soft: #1c1c20;
+  --color-fg: #fafafa;
+  --color-muted: #a1a1ab;
+  --color-faint: #6d6d77;
+
+  /* Primary — blue. Used sparingly: CTAs, active nav, links, focus. */
+  --color-accent: #3b82f6;
+  --color-accent-strong: #60a5fa;
+  --color-accent-dim: #6d6d77;
+  --color-accent-fg: #ffffff;
+
+  /* Status — emerald. Rating — amber. Error — red. */
+  --color-success: #0fb981;
+  --color-warning: #f5a524;
+  --color-danger: #ef4444;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Stack Sans Headline", var(--font-inter), sans-serif;
+
+  --radius-xl2: 1.25rem;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    /* Explicit solid color: iOS Safari samples it to tint the status-bar band. */
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  #scroll-root {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01", "cv03";
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-fg);
+  }
+
+  /* Subtle film grain */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-3);
+    border-radius: 999px;
+    border: 3px solid var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-strong);
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :where(a, button, input, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 400 !important;
+    letter-spacing: -0.015em;
+  }
+
+  /* Grid texture panel */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* Grayscale imagery, subtle colour on group hover */
+  .duotone {
+    filter: grayscale(1) contrast(1.02);
+    transition: filter 0.6s ease;
+  }
+  .group:hover .duotone {
+    filter: grayscale(0.4) contrast(1);
+  }
+
+  /* Availability pulse */
+  .pulse-dot {
+    animation: pulse-ring 2.4s var(--ease-out-soft) infinite;
+  }
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 rgba(15, 185, 129, 0.45);
+    }
+    70% {
+      box-shadow: 0 0 0 7px rgba(15, 185, 129, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(15, 185, 129, 0);
+    }
+  }
+
+  /* Edge fade for the horizontally-scrolling reviews strip */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+  }
+
+  /* Success badge pop */
+  .animate-pop {
+    animation: pop 0.42s var(--ease-out-soft) both;
+  }
+  @keyframes pop {
+    0% {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Scroll reveal — single source of motion for entering content */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  #scroll-root {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-pop {
+    animation: none !important;
+  }
+  .pulse-dot {
+    animation: none !important;
+  }
+  .duotone {
+    transition: none !important;
+  }
+}

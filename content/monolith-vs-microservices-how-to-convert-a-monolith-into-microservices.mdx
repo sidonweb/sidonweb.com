@@ -1,0 +1,169 @@
+---
+title: "Monolith vs Microservices: How to Convert a Monolith into Microservices"
+summary: "A practical, no fluff breakdown of monolith vs microservices architecture, why teams migrate, and the exact steps and patterns (Strangler, Saga, Outbox) used to do it safely in production."
+publishedAt: "2026-06-30"
+tags: "system-design, backend, microservices, architecture, kafka"
+---
+
+I have been exploring about this topic lately because of the kind of systems I work on at my job. We deal with toll and parking infrastructure, multiple zones, multiple services talking to each other, and at some point the question always comes up. Should this be one big application or should we break it into smaller services.
+
+So I went deep into this topic, checked the concepts against how things actually work in production systems, and decided to write down everything in a way that actually makes sense. Not textbook definitions, not buzzwords, just the real reasoning behind why teams do this and how they actually pull it off without breaking everything.
+
+If you are a developer trying to understand this properly, or you are curious about system design, this blog will be a good read for you.
+
+## CHAPTER 1: What a Monolith Actually Is
+
+Some people think monolith means bad and outdated. That is not really true. A monolith is just an application where all your modules, auth, cart, payment, notifications, search, whatever, live inside one single codebase and talk to one single database. Everything is tightly coupled. That is the real keyword here, coupling.
+
+Imagine a Udemy like platform. Auth, course catalog, cart, payment, video streaming, all sitting in the same repo, deployed together, scaled together. One `npm run build`, one deploy pipeline, one database connection pool shared by everything.
+
+Sounds simple, and honestly for a lot of products, it genuinely is the right choice in the beginning. Almost every company you admire today, Amazon, Netflix, Uber, started out as a monolith. There is no shame in it. A monolith lets a small team move fast without worrying about network calls, distributed tracing, or service discovery. You write a function, you call it, done.
+
+## CHAPTER 2: Why Monoliths Start Hurting
+
+The problem is not that a monolith is slow or badly written. The real problem is fragility and blast radius.
+
+If your payment module has a memory leak, it can take down your auth module too, because they are running in the same process, on the same machine, sharing the same CPU and memory. One bad deploy and everything goes down together. One slow database query in your reporting module can choke the connection pool that your checkout flow also depends on.
+
+There is also a team problem that nobody talks about enough. When 15 engineers are pushing code into the same repo, the same CI pipeline, the same release cycle, merge conflicts and deployment coordination start eating more time than actual feature work. A small change in the notifications module ends up needing a full regression test of the entire application because nobody is fully sure what depends on what anymore.
+
+That is the part that actually pushes teams to think about microservices. Not because monolith is "old technology," but because failure in one place should not mean failure everywhere, and because team velocity starts dropping as the codebase and the team both grow.
+
+## CHAPTER 3: What Microservices Actually Solve
+
+In a microservices setup, each module becomes its own independent service. Auth is its own service with its own database. Payment is its own service with its own database. They talk to each other over the network instead of just calling functions internally, usually through REST, gRPC, or an event bus like Kafka.
+
+This gives you a few real, tangible benefits.
+
+You can scale only the service that needs scaling. If your payment service gets hammered during a sale, you scale just that, instead of spinning up ten copies of your entire application including modules that don't need the extra load.
+
+You can deploy one service without touching the rest. Your auth team can ship three times a day while your payments team ships once a week with extra review, and neither blocks the other.
+
+You get fault isolation. If payment crashes, your auth service and your course catalog keep running just fine. Users can still log in and browse, even if checkout is temporarily down.
+
+You also get technology freedom. Your recommendation service can be written in Python for the ML ecosystem, while your core API stays in Node or Go. In a monolith, you are stuck with one stack for everything.
+
+None of this is free though, and that is the part people conveniently skip. You now have network latency between services that used to be in process function calls. You have distributed debugging, where one user request might touch five services and you need proper tracing to even figure out what went wrong. You have data consistency problems, because you no longer have one database transaction that wraps everything. We will get into exactly how to handle that part later.
+
+## CHAPTER 4: The Misconception Everyone Has
+
+Some people assume a monolith has to run on one single machine, and that microservices automatically mean hundreds of tiny machines. Both of these are wrong, and this misconception alone causes a lot of bad architecture decisions.
+
+A monolith can absolutely be scaled horizontally. You can run multiple instances of the exact same monolith behind a load balancer, all hitting the same database, and handle a surprising amount of traffic this way. Stack Overflow famously ran on a relatively small number of machines for years while serving massive amounts of traffic, because their monolith was well optimized.
+
+On the other side, microservices don't need a separate machine for every tiny service either, unless your traffic actually demands that level of isolation. You can run multiple lightweight services on the same machine or the same Kubernetes node, just in separate containers, separate processes, separate failure domains.
+
+Architecture decisions should follow your actual traffic patterns and team size, not some idea of what looks "modern" on a resume or a system design diagram. A ten person startup copying Netflix's architecture with forty microservices is usually solving a problem they don't have yet, while creating ten new problems they definitely didn't have before.
+
+## CHAPTER 5: Migration Is Not a Weekend Project
+
+People try to rewrite an entire monolith into microservices in one go, in what is sometimes called a "big bang rewrite," and it almost never works out well. There is a well known pattern in engineering where teams attempt this, spend six months to a year on it, and either ship something with more bugs than what they started with, or never actually finish because the business needs keep changing underneath them.
+
+Migration is not a one day activity, and it should never be treated like one. The right way is to go module by module, not the whole system at once. You also never shift 100 percent of your traffic to a new service in one shot. That is basically asking for an outage in front of your users and your stakeholders.
+
+The mindset shift here is important. You are not "replacing" the monolith. You are slowly extracting pieces out of it while it keeps running and keeps serving real traffic the entire time. The monolith and the new microservices coexist for a while, sometimes for a long while, and that overlap period is where most of the real engineering work happens.
+
+## CHAPTER 6: The Actual Steps to Migrate
+
+Breaking it down the way it should actually be done in a real production environment.
+
+**Step one, understand your monolith properly.** Map out every module you currently have, know what depends on what. This sounds basic but most teams skip it and end up extracting a service that secretly depends on three other modules they forgot about. Draw the actual dependency graph before touching any code.
+
+**Step two, identify the high impact areas.** Don't start with something low risk just because it feels easy. A lot of guides tell you to start with something small and safe, but starting with a high impact, high traffic module like payments forces you to solve the hard problems early, data consistency, observability, rollback strategy, while the stakes are visible and the team is paying attention. Once you have solved it once for a hard module, the easier modules become much faster to migrate.
+
+**Step three, build proper API contracts.** Decide how your services are going to talk to each other. REST is simple and works well for request response style communication. gRPC is faster and better for internal service to service calls where you control both ends. Something event driven like Kafka works best when you need services to react to things happening elsewhere without being tightly coupled in real time, like sending a notification after a payment succeeds. This decision affects everything that comes after, so don't rush it.
+
+**Step four, migrate module by module.** Move the code out, give it its own dedicated database, and make sure it can run independently without secretly reaching back into the monolith's database. This is usually the hardest engineering step because the old code was never written assuming it would live alone.
+
+**Step five, monitor and observe closely.** The new service needs to prove it can handle real traffic reliably before you trust it fully. This means proper logging, metrics, and distributed tracing from day one, not added later as an afterthought. You want to know error rates, latency percentiles, and throughput for the new service compared to what the old monolith module used to handle.
+
+**Step six, scale and optimize once it is stable.** Use horizontal scaling on the specific service that needs it, not everything blindly. Now is also when you tune things like connection pool sizes, caching layers, and autoscaling rules specifically for that one service's traffic pattern.
+
+## CHAPTER 7: The Patterns That Actually Make This Safe
+
+This is where things get genuinely interesting, because these patterns are what separate a risky migration from a controlled, boring, predictable one. And in production engineering, boring is exactly what you want.
+
+### Strangler Pattern and Canary Deployment
+
+The Strangler pattern is named after strangler fig vines that slowly grow around a tree until eventually they replace it entirely while the tree is still alive underneath. That is exactly the idea here. You put a routing layer, often an API gateway or a reverse proxy, in front of both the monolith and the new microservice. Initially, all traffic for that module still goes to the monolith.
+
+Canary deployment is how you actually execute the shift safely. Instead of switching traffic instantly, you gradually shift it. Start at something like 0.1 percent of traffic going to the new service, watch your error rates and latency closely, then slowly increase it, 1 percent, 5 percent, 25 percent, all the way to 100 percent. The old monolith module keeps running in parallel the entire time as a safety net, so if anything looks wrong at any stage, you just route traffic back to the monolith instantly with zero downtime.
+
+A rough idea of what this routing logic looks like at the gateway level:
+
+```js
+function routePaymentRequest(req) {
+  const rolloutPercentage = getFeatureFlag("payment-service-rollout"); // e.g. 25
+  const bucket = hash(req.userId) % 100;
+
+  if (bucket < rolloutPercentage) {
+    return forwardTo("payment-microservice", req);
+  }
+  return forwardTo("monolith-payment-module", req);
+}
+```
+
+Nothing fancy, just a percentage based router controlled by a feature flag, so you can dial the traffic up or down without a redeploy.
+
+### Saga Pattern
+
+Once your data is spread across multiple services, a single business transaction might span more than one service. For example, placing an order on that Udemy style platform might involve the order service, the payment service, and the enrollment service. In a monolith, this was one database transaction, all or nothing. In microservices, you don't have that luxury anymore because each service owns its own database.
+
+The Saga pattern handles this by breaking the transaction into a sequence of local transactions, each with its own compensating action if something fails midway. So the flow looks like this:
+
+1. Order service creates an order in "pending" state.
+2. Payment service charges the user.
+3. If payment succeeds, enrollment service grants course access.
+4. If enrollment fails for some reason, a compensating transaction triggers a refund through the payment service, and the order gets marked as failed.
+
+This can be coordinated in two main ways. Choreography, where each service listens for events and reacts on its own, usually through Kafka topics, with no central coordinator. Or orchestration, where a central saga orchestrator explicitly tells each service what to do next and tracks the state of the whole transaction. Choreography is more decoupled but harder to trace. Orchestration is easier to reason about but introduces a central piece that needs to be highly reliable.
+
+This is what keeps your data consistent across services without needing one giant database transaction spanning multiple machines, which generally does not scale well in practice.
+
+### Outbox Pattern
+
+During migration, you often have your old monolith database and your new microservice database existing at the same time, and they both need to stay in sync. The classic problem here is what is sometimes called the dual write problem. If your service writes to its own database and then tries to publish an event to Kafka right after, what happens if the database write succeeds but the Kafka publish fails because of a network blip. Now your systems have silently drifted out of sync, and these bugs are brutal to catch in production because they don't fail loudly, they just slowly cause weird inconsistencies that show up days later.
+
+The Outbox pattern fixes this. Instead of writing to your database and then separately publishing to Kafka, you write both the actual data change and an "event to be published" row into the same database transaction, into a special outbox table. A separate background process, often called a relay or using something like Debezium for change data capture, reads new rows from that outbox table and publishes them to Kafka, then marks them as sent.
+
+```sql
+BEGIN;
+
+INSERT INTO payments (id, order_id, status, amount)
+VALUES ('pay_123', 'order_456', 'completed', 499);
+
+INSERT INTO outbox (id, event_type, payload, created_at)
+VALUES ('evt_789', 'payment.completed', '{"orderId": "order_456"}', now());
+
+COMMIT;
+```
+
+Because both inserts happen in the same atomic transaction, you never end up in a state where the payment exists but the event never gets published, or the other way around. This is genuinely one of those patterns that looks simple on paper but saves you from extremely painful production incidents during a migration phase where two databases need to stay in sync.
+
+## CHAPTER 8: The Finish Line
+
+Once you have successfully routed 100 percent of traffic to the new service, and you are confident it has been stable for a meaningful amount of time under real production load, only then do you go back and decommission the old module from the monolith. Not before that. The old code stays in place as a safety net right up until the very end, even if it is receiving zero traffic, just in case you need to roll back fast.
+
+A lot of teams also keep the old module's data in the monolith database for some retention period even after the microservice fully takes over, purely as a backup, before finally cleaning it up.
+
+## CHAPTER 9: Things I Would Add That Often Get Left Out
+
+A few things that don't always make it into the standard explanation of this topic but genuinely matter once you are actually doing this.
+
+**Database per service is non negotiable.** A common mistake is splitting the code into services but leaving them all pointed at the same shared database. At that point, you have not actually decoupled anything, you have just added network latency for no benefit. Each service needs to own its data, and other services should only access that data through the service's API, never directly through the database.
+
+**Observability has to come before the migration, not after.** Distributed tracing tools like Jaeger or OpenTelemetry, centralized logging, and proper dashboards need to exist before you start shifting traffic, not after something breaks and you realize you have no visibility into which of your five services is the actual problem.
+
+**Versioned API contracts matter more than people expect.** Once two teams own two different services independently, you cannot just change a response shape because it is convenient for you. You need proper API versioning, and ideally contract testing, so one team's deploy does not silently break another team's service.
+
+**Not everything needs to become a microservice.** Some modules genuinely belong together because they change together and are tightly related, like user profile and user preferences in a lot of applications. Splitting purely for the sake of splitting adds complexity without adding any real benefit. The boundary should usually follow your actual business domains, which is the whole idea behind domain driven design.
+
+## Final Thoughts
+
+What stuck with me the most after going through all of this properly is that microservices is not really about chasing a trend. It is a tradeoff. You are trading simplicity for flexibility, and you are taking on real operational complexity, distributed transactions, network calls, observability, eventual consistency, in exchange for fault isolation and independent scaling.
+
+If your monolith is working fine and your team is small, there is genuinely nothing wrong with staying monolith and just scaling it horizontally. Plenty of profitable, high traffic companies run modular monoliths for years before ever needing to split anything. Microservices make sense when the pain of coupling, slow deploys, blocked teams, one module taking down everything, becomes bigger than the pain of distributed systems.
+
+For me, this whole topic is a good reminder that good architecture is not about picking whatever looks impressive on a system design diagram or a resume. It is about picking what actually solves the problem you have, at the stage you are actually at, and being honest enough to know the difference.
+
+If you are working through something similar in your own systems, or just want to talk through a real migration problem, feel free to reach out. Always happy to nerd out about this stuff.
