@@ -47,11 +47,11 @@ export default function Intro() {
 
           <Reveal delay={140}>
             <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-muted">
-              I&apos;m Siddharth Singh, a full-stack engineer in {profile.location}.
-              I spend most of my time on real-time systems and AI, and I do my best
-              work when something important has to stay up and simply can&apos;t
-              fail. If you want someone who ships fast and sweats the details that
-              matter, I&apos;d love to hear from you.
+              I&apos;m a full-stack engineer in {profile.location}. Most of my time
+              goes to real-time systems and AI, and I do my best work when something
+              important has to stay up and simply can&apos;t fail. If you want someone
+              who ships fast and sweats the details that matter, I&apos;d love to hear
+              from you.
             </p>
           </Reveal>
 

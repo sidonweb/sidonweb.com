@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { projects, socials, profile, links } from "../lib/data";
+import { projects, caseStudies, socials, profile, links } from "../lib/data";
 import { navItems } from "./nav-items";
 import { scrollToSection } from "./use-scroll-spy";
 
@@ -65,6 +65,14 @@ export default function CommandPalette({
         run: route("/blogs"),
       },
     ];
+    const caseItems: Item[] = caseStudies.map((c) => ({
+      id: `c-${c.slug}`,
+      label: c.title,
+      hint: "Case study",
+      group: "Case studies",
+      keywords: `${c.kind} ${c.stack.join(" ")} ${c.tagline}`,
+      run: route(`/work/${c.slug}`),
+    }));
     const projectItems: Item[] = projects.map((p) => ({
       id: `p-${p.slug}`,
       label: p.title,
@@ -135,7 +143,7 @@ export default function CommandPalette({
           },
         })),
     ];
-    return [...nav, ...projectItems, ...postItems, ...actions];
+    return [...nav, ...caseItems, ...projectItems, ...postItems, ...actions];
   }, [router, close, pathname, posts]);
 
   const filtered = useMemo(() => {

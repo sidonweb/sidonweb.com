@@ -5,11 +5,12 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Reveal from "../../components/reveal";
 import Button from "../../components/button";
-import { projects } from "../../lib/data";
+import CaseStudyDetail from "../../components/case-study-detail";
+import { projects, caseStudies } from "../../lib/data";
 import { SITE_URL } from "../../lib/seo";
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return [...caseStudies, ...projects].map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -18,9 +19,33 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const url = `/work/${slug}`;
+
+  const study = caseStudies.find((c) => c.slug === slug);
+  if (study) {
+    return {
+      title: `${study.title} — ${study.kind} case study`,
+      description: study.summary,
+      keywords: study.stack,
+      alternates: { canonical: url },
+      openGraph: {
+        type: "article",
+        title: `${study.title} · Case study · Siddharth Singh`,
+        description: study.tagline,
+        url,
+        ...(study.image ? { images: [{ url: study.image, alt: `${study.title} preview` }] } : {}),
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: study.title,
+        description: study.tagline,
+        ...(study.image ? { images: [study.image] } : {}),
+      },
+    };
+  }
+
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
-  const url = `/work/${project.slug}`;
   return {
     title: `${project.title} — ${project.kind}`,
     description: project.summary,
@@ -42,12 +67,40 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProjectPage({
+export default async function WorkPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  const csIndex = caseStudies.findIndex((c) => c.slug === slug);
+  if (csIndex !== -1) {
+    const study = caseStudies[csIndex];
+    const next = caseStudies[(csIndex + 1) % caseStudies.length];
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: study.title,
+      headline: study.tagline,
+      description: study.summary,
+      url: `${SITE_URL}/work/${study.slug}`,
+      ...(study.image ? { image: `${SITE_URL}${study.image}` } : {}),
+      keywords: study.stack.join(", "),
+      dateCreated: String(study.year),
+      author: { "@type": "Person", name: "Siddharth Singh", url: SITE_URL },
+    };
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <CaseStudyDetail study={study} next={{ slug: next.slug, title: next.title }} />
+      </>
+    );
+  }
+
   const index = projects.findIndex((p) => p.slug === slug);
   if (index === -1) notFound();
   const project = projects[index];

@@ -33,30 +33,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "ledgr",
-    title: "Ledgr",
-    year: 2026,
-    status: "Live",
-    kind: "Personal finance · PWA",
-    tagline: "See exactly where the money goes, even when payday moves.",
-    summary:
-      "A budgeting app that splits every rupee into Needs, Wants, and Savings on the 50/30/20 rule, then tells you at a glance whether you are on track. Built for real paychecks, including the ones that never land on the same date twice.",
-    image: "/photos/LedgrThumbnail.png",
-    accentStack: ["Next.js", "PostgreSQL", "next-pwa"],
-    stack: ["Next.js", "TypeScript", "shadcn/ui", "Tailwind CSS", "PostgreSQL", "Recharts", "next-pwa"],
-    highlights: [
-      "Designed a dual budgeting-cycle system: a default calendar month, and a Salary Cycle mode that derives period boundaries from logged income and recalculates the 50/30/20 split against what actually got credited.",
-      "Built a rolling cycle-length estimator that averages past pay cycles to project the days left in the current one, surfaced as a live dashboard indicator for pacing daily spend.",
-      "Implemented multi-tenant isolation on PostgreSQL with session auth, a full JSON export and import backup system, and CSV export with computed Need / Want / Saving categorization.",
-      "Built a five-year income projection engine using compound growth against configurable salary and growth-rate inputs to drive the allocation forecast.",
-      "Shipped as an installable PWA with offline shell caching, one consistent design system across Dashboard, Ledger, Analysis, and Calendar.",
-    ],
-    links: [
-      { label: "Live site", href: "https://theledgrapp.vercel.app/" },
-      { label: "Source", href: "https://github.com/sidonweb/ledgr" },
-    ],
-  },
-  {
     slug: "docmind",
     title: "DocMind",
     year: 2026,
@@ -168,6 +144,288 @@ export const projects: Project[] = [
       "Used parameterized queries and input sanitization to close off XSS and SQL injection.",
     ],
     links: [{ label: "Source", href: "https://github.com/sidonweb/BookNotes" }],
+  },
+];
+
+export type CaseStudy = {
+  slug: string;
+  title: string;
+  year: number;
+  status: string;
+  kind: string;
+  tagline: string;
+  summary: string;
+  lead: string;
+  image?: string;
+  accentStack: string[];
+  stack: string[];
+  meta: { label: string; value: string }[];
+  sections: {
+    n: string;
+    kicker: string;
+    heading: string;
+    body: string[];
+    bullets?: string[];
+    steps?: { label: string; body: string }[];
+    figure?: string;
+  }[];
+  comparison?: {
+    title: string;
+    note: string;
+    columns: string[];
+    rows: string[][];
+  };
+  metrics: { value: string; label: string }[];
+  links: { label: string; href: string }[];
+};
+
+export const caseStudies: CaseStudy[] = [
+  {
+    slug: "ledgr",
+    title: "Ledgr",
+    year: 2026,
+    status: "Live, open source",
+    kind: "Personal finance",
+    tagline: "Know where your money went before the month ends.",
+    summary:
+      "A personal finance app that plans around your real payday instead of the calendar month, reduces a month of spending to a single 0 to 10 score, and answers questions about your money through an AI assistant that never touches the database directly.",
+    lead:
+      "Ledgr is a personal finance app built on one belief: a ledger of transactions is not the same thing as understanding your money. It plans around the day you are actually paid instead of the calendar month, reduces a month of spending to a single score you can read at a glance, and answers plain questions about your spending through a grounded AI assistant that never gets direct access to your database. I designed and built the whole thing.",
+    image: "/photos/LedgrThumbnail.png",
+    accentStack: ["Next.js", "PostgreSQL", "Grounded AI"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Recharts", "next-pwa"],
+    meta: [
+      { label: "Role", value: "Full-stack engineer" },
+      { label: "Scope", value: "Concept, product design, full-stack build" },
+      { label: "Platform", value: "Web, installable PWA" },
+      { label: "Industry", value: "Personal finance" },
+      { label: "Status", value: "Live, open source" },
+    ],
+    sections: [
+      {
+        n: "01",
+        kicker: "Why this exists",
+        heading: "Most money apps record the past. Few tell you what to do next.",
+        body: [
+          "Every bank app and expense tracker can show you a list of what you spent. Almost none tell you whether that was fine. The gap is not data, most people already have the transaction history. It is turning that history into one clear decision before the month is over and the decision no longer matters.",
+          "Ledgr exists to close that gap. Not a better spreadsheet, a single readable signal, with the detail behind it one tap away.",
+        ],
+        figure: "The money score: 8.6 out of 10, with needs, wants, and savings measured against plan.",
+      },
+      {
+        n: "02",
+        kicker: "The problem",
+        heading: "Calendar-month budgeting does not match how money actually moves.",
+        body: [
+          "Most budgeting tools quietly assume you are paid on the 1st and spend in neat 30-day blocks. Real life does not work that way.",
+        ],
+        bullets: [
+          "Salary rarely lands on the 1st, so a monthly budget is measuring the wrong 30 days.",
+          "Small, forgettable UPI payments are exactly where money leaks, and most trackers do not keep them attached to a category or a day.",
+          "Savings gets treated as whatever is left, instead of a line item in the plan itself.",
+          "Cash, cards, UPI, and transfers each tell part of the story. Stitched across five apps, none tell the whole one.",
+        ],
+      },
+      {
+        n: "03",
+        kicker: "The core idea",
+        heading: "Plan around your real payday, not the calendar's.",
+        body: [
+          "The foundation of Ledgr is the salary cycle: a budget period that runs payday to payday, not the 1st to the 31st. Every category, every trend, every score is measured against that real cycle. On track means on track for how you actually get paid, not for a calendar convention that has nothing to do with your income.",
+        ],
+        figure: "The salary-cycle selector, sitting next to the calendar-cycle option.",
+      },
+      {
+        n: "04",
+        kicker: "How it works",
+        heading: "Plan. Log. See. Decide.",
+        body: [],
+        steps: [
+          { label: "Set the plan", body: "Add income, pick a calendar or salary cycle, and shape categories around actual life, not a generic template." },
+          { label: "Log in seconds", body: "Capture every expense, income entry, and saving with the payment context, UPI, card, cash, or transfer, that you will need later." },
+          { label: "See the pattern", body: "Compare needs, wants, and savings against plan, with trends you can scan instead of dig for." },
+          { label: "Ask a better question", body: "A grounded assistant answers things like where did I overspend this cycle, reasoning over your own data without ever being handed database access." },
+        ],
+      },
+      {
+        n: "05",
+        kicker: "The money score",
+        heading: "One number for the month. The reasoning stays visible.",
+        body: [
+          "A score from 0 to 10 exists so a month is readable at a glance, not a spreadsheet you have to interpret cold. Below 5, the plan has drifted enough that the answer is fix the biggest category, not every small purchase. Between 5 and 8, parts of the plan are holding and a couple of categories need attention before the cycle closes. Above 8, needs, wants, and savings are close enough to plan that the job is protecting what already works.",
+          "The score is a summary, never the whole answer. The needs, wants, and savings breakdown and the daily trend sit one tap behind it for anyone who wants to see exactly what moved it.",
+        ],
+        figure: "The three score bands: reset the plan, getting steadier, and on track.",
+      },
+      {
+        n: "06",
+        kicker: "The hard part",
+        heading: "Letting an AI answer questions about your money without letting it near your database.",
+        body: [
+          "The obvious way to build ask AI about your spending is to give a model query access to the transaction table and let it write SQL on demand. That is also the fastest way to turn a budgeting app into a data-access incident, one bad prompt or one bug in the query layer away from exposing data it should never touch, or worse, writing to it.",
+          "Ledgr's assistant is grounded instead. It reasons over your own spending through fixed, read-only tools to answer a question like where did I overspend this cycle, without ever being granted a live connection to the underlying database. The assistant gets exactly the shape of data it needs to answer the question in front of it, and nothing else.",
+        ],
+        figure: "The Ask AI assistant answering a spending question, grounded in read-only tools.",
+      },
+      {
+        n: "07",
+        kicker: "Built to be checked",
+        heading: "Open source, on a plain stack, and yours alone.",
+        body: [
+          "Ledgr is live and open source. The repo, contributing guide, and README are public alongside the product. It runs on a deliberately plain, well-understood stack, Next.js, React, and PostgreSQL, so the interesting parts of the product are the budgeting model and the grounded AI boundary, not the plumbing underneath.",
+          "The account is a private workspace, not a feed for an ad network or a dataset for aggregation. The model answering your questions is scoped to your data only, never the reverse.",
+        ],
+      },
+    ],
+    comparison: {
+      title: "Where it fits",
+      note: "Clarity, not another spending chart.",
+      columns: ["What matters", "Ledgr", "Typical tracker"],
+      rows: [
+        ["Planning", "Calendar or salary cycle", "Usually calendar-only"],
+        ["Budget model", "Needs, wants, and savings", "One generic spend limit"],
+        ["Context", "Category, payment mode, notes", "Amount and merchant only"],
+        ["Analysis", "Weekly to yearly, plus grounded Ask AI", "Basic monthly totals"],
+        ["Privacy", "Private account workspace", "Often ad or aggregation driven"],
+        ["Price", "Free to start", "Paywall before real clarity"],
+      ],
+    },
+    metrics: [
+      { value: "0-10", label: "money score that summarizes an entire cycle" },
+      { value: "3", label: "budget categories tracked against plan: needs, wants, savings" },
+      { value: "0", label: "database access granted to the AI assistant" },
+      { value: "4", label: "payment modes unified into one ledger: UPI, cards, cash, transfers" },
+    ],
+    links: [
+      { label: "Try Ledgr", href: "https://theledgrapp.vercel.app/" },
+      { label: "View the repo", href: "https://github.com/sidonweb/ledgr" },
+    ],
+  },
+  {
+    slug: "greenlight",
+    title: "Greenlight",
+    year: 2026,
+    status: "In active development",
+    kind: "AI experiment copilot",
+    tagline: "Turn A/B test noise into a verdict you can trust.",
+    summary:
+      "An agent that reads a live A/B test the way a data analyst would: it opens both variants in a real browser, works out what changed, pulls the event data, runs the statistics, and returns a Scale, Continue, Stop, or Rollback call a PM can act on immediately.",
+    lead:
+      "Greenlight reads a live A/B test the way a data analyst would. It opens both variants in a real browser, works out what actually changed, pulls the event data, runs the statistics, and hands a PM a Scale, Continue, Stop, or Rollback call they can act on immediately. No dashboard full of charts to interpret alone, no waiting on an analyst's queue. I designed the agent's decision pipeline and built the system end to end: backend, agent, and dashboard.",
+    accentStack: ["LangGraph", "FastAPI", "Read-only SQL"],
+    stack: ["FastAPI", "LangGraph", "Claude", "Playwright MCP", "PostgreSQL", "React", "Docker"],
+    meta: [
+      { label: "Role", value: "AI and full-stack engineer" },
+      { label: "Scope", value: "Concept, agent design, full-stack build" },
+      { label: "Platform", value: "Web dashboard, any web test subject" },
+      { label: "Industry", value: "Experimentation and analytics" },
+      { label: "Status", value: "Hackathon build, in active development" },
+    ],
+    sections: [
+      {
+        n: "01",
+        kicker: "Why this exists",
+        heading: "A PM should not need a data analyst to know if a test worked.",
+        body: [
+          "Every team running experiments hits the same wall. The test is live, the numbers are trickling in, and the person who most needs an answer, the PM, cannot get one without either learning SQL or waiting for someone who can write it. By the time the analysis comes back, the moment to act on it has often passed.",
+          "The Copilot exists to close that gap. Not another chart to stare at, a verdict, with the reasoning attached, the moment enough data exists to trust it.",
+        ],
+        figure: "A decision card in chat: the verdict, its confidence, and the reasoning behind it.",
+      },
+      {
+        n: "02",
+        kicker: "The problem",
+        heading: "Dashboards show you numbers. They do not tell you what to do.",
+        body: [
+          "Most experimentation tools stop at here is the data. A PM still has to notice the right delta, know whether it is statistically meaningful, and decide what to do about it. Three separate skills, none of which is run the business.",
+        ],
+        bullets: [
+          "Generic dashboards report metrics configured up front, and someone has to remember to configure the right one.",
+          "A raw p-value means nothing to most PMs without someone translating it into a decision.",
+          "By the time an analyst is looped in to sanity-check a test, days have usually passed.",
+          "Every new test subject needs its own custom integration before anyone can even look at its data.",
+        ],
+      },
+      {
+        n: "03",
+        kicker: "The core idea",
+        heading: "One agent, with a hard line between what it decides and what it computes.",
+        body: [
+          "The Copilot is a single LangGraph agent a PM talks to like a colleague. The design choice that makes it trustworthy, not just impressive, is a strict boundary: the agent can look, reason, and decide which metric matters, but it never computes the statistics itself. The z-test and the Scale, Continue, Stop, or Rollback rule live in plain, deterministic code the model cannot touch. Ask it the same question on the same data twice and the number never moves, only the explanation might read a little differently.",
+        ],
+        figure: "The chat interface mid-conversation, with the agent explaining its reasoning.",
+      },
+      {
+        n: "04",
+        kicker: "The pipeline",
+        heading: "It never guesses the metric. It looks first.",
+        body: [
+          "The interesting engineering problem was not the statistics, it was refusing to hardcode what success means. A hardcoded conversion equals checkout_completed breaks the moment you point the Copilot at a different product. So every analysis runs through the same widening chain.",
+        ],
+        steps: [
+          { label: "Inspect", body: "A real headless browser opens both variant URLs and captures what is actually on the page." },
+          { label: "Infer", body: "The agent compares the two DOM snapshots against the event names that genuinely exist in the data, and picks the one metric that reflects what changed." },
+          { label: "Query", body: "A dedicated read-only data sub-agent writes and runs the SQL to pull that metric per variant." },
+          { label: "Decide", body: "A fixed, testable rule set turns the numbers into Scale, Continue, Stop, or Rollback." },
+        ],
+      },
+      {
+        n: "05",
+        kicker: "The verdict engine",
+        heading: "A recommendation you can check, never a black box.",
+        body: [
+          "A PM acting on a Scale or Rollback call is making a real business decision, so it cannot be something they take on faith. The statistics module runs a two-proportion z-test against the exact counts the data sub-agent pulled, and the verdict rules are a fixed table, not a judgment the model makes fresh each time. Every decision comes back with the p-value, the uplift, and the actual SQL that ran, so a skeptical PM can check the work in seconds.",
+        ],
+        figure: "The Apply Recommendation modal: verdict, confidence, and the option to update the traffic split.",
+      },
+      {
+        n: "06",
+        kicker: "The hard part",
+        heading: "Keeping the agent honest when it is easier for it to fake the work.",
+        body: [
+          "The hardest problem was not statistics, it was language models. Left alone, a model will sometimes narrate what a SQL query would return instead of actually calling the tool to run it, especially under pressure in a multi-step reasoning chain. That is invisible in a demo and dangerous in production: a confident answer built on a query that never ran.",
+          "The fix was architectural, not prompt tuning. The data-fetching step was pulled into its own sub-agent with a narrow job and a hard requirement to call the tool before answering, and the main agent's prompt walks the pipeline as an explicit, ordered checklist rather than trusting the model to remember the right order. It is the kind of failure you only catch by watching an agent work, not by reading its final answer.",
+        ],
+      },
+      {
+        n: "07",
+        kicker: "The security lens",
+        heading: "The agent that reads your production data cannot be trusted to also write to it.",
+        body: [
+          "This is the part most AI analytics tools skip. The Copilot's SQL access runs as a dedicated read-only Postgres role, not the app's normal database user, with three independent layers stopping it from doing damage. The query has to start with SELECT or it is rejected before running. A second check blocks any write keyword even if it slips past the first. A row limit is enforced even when the agent does not ask for one. Underneath all of it, the role itself has no write grants, so even a bug in the app layer cannot turn into a mutation.",
+        ],
+        figure: "The architecture: the read-only agent role, isolated from any write path.",
+      },
+      {
+        n: "08",
+        kicker: "Where it is",
+        heading: "Started in a hackathon, still being hardened.",
+        body: [
+          "The Copilot began as a hackathon build and I have kept building on it since, using Claude as an engineering partner throughout, from designing the agent's tool boundaries to writing the FastAPI and React around it. The decisions that mattered most, refusing to let the model touch the statistics, sandboxing its database access at the role level, forcing it to look at the actual pages instead of trusting a config value, were product and security calls before they were code.",
+          "It is honest about where it still is. Today the agent's database access sits on the same Postgres instance as the test subject's data, separated by role, not by network. Event ingestion is a direct synchronous write rather than a queued one. Both are active work: moving the agent onto its own database, and decoupling ingestion behind a proper event queue, so any test subject can plug in without ever handing over credentials.",
+        ],
+      },
+    ],
+    comparison: {
+      title: "Where it fits",
+      note: "Next to the tools already in a PM's stack.",
+      columns: ["Tool", "Nails", "Leaves you"],
+      rows: [
+        ["Generic analytics dashboards", "Real-time charts once someone configures the right metric", "Still having to notice the signal and decide what it means"],
+        ["A plain LLM chatbot on your data", "Fast, conversational answers", "No guardrail against a wrong number stated with confidence"],
+        ["A data analyst", "Judgment you can trust", "A queue, and an answer that lands after the moment to act"],
+        ["Greenlight", "Inspects the pages, grounds every number in a read-only query it shows you, and returns a verdict in the time it takes to ask", ""],
+      ],
+    },
+    metrics: [
+      { value: "13", label: "feature specs shipped across agent, dashboard, and evaluation harness" },
+      { value: "3", label: "independent layers guarding every SQL query the agent runs" },
+      { value: "0", label: "write grants on the role the agent connects with" },
+      { value: "6", label: "services running together: two backends, two frontends, browser automation, Postgres" },
+    ],
+    links: [
+      { label: "View the repo", href: "https://github.com/sidonweb/greenlight" },
+    ],
   },
 ];
 
