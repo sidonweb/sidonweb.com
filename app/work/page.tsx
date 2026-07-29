@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import Reveal from "../components/reveal";
 import ProjectGrid from "../components/project-grid";
-import { projects } from "../lib/data";
+import CaseStudyBlock from "../components/case-study-block";
+import { projects, caseStudies } from "../lib/data";
 import { SITE_URL } from "../lib/seo";
 
 const description =
@@ -34,12 +35,12 @@ export default function WorkIndex() {
     description,
     url: `${SITE_URL}/work`,
     author: { "@type": "Person", name: "Siddharth Singh", url: SITE_URL },
-    hasPart: projects.map((p) => ({
+    hasPart: [...caseStudies, ...projects].map((p) => ({
       "@type": "CreativeWork",
       name: p.title,
       description: p.summary,
       url: `${SITE_URL}/work/${p.slug}`,
-      image: `${SITE_URL}${p.image}`,
+      ...(p.image ? { image: `${SITE_URL}${p.image}` } : {}),
       keywords: p.stack.join(", "),
       dateCreated: String(p.year),
     })),
@@ -56,7 +57,7 @@ export default function WorkIndex() {
         <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
           <span className="text-muted">Work</span>
           <span className="h-px w-5 bg-border" />
-          <span>{projects.length} projects</span>
+          <span>{caseStudies.length} case studies · {projects.length} projects</span>
         </div>
       </Reveal>
 
@@ -71,6 +72,20 @@ export default function WorkIndex() {
         </p>
       </Reveal>
 
+      <Reveal delay={140}>
+        <div className="mt-14 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
+          <span className="text-muted">Case studies</span>
+          <span className="h-px w-5 bg-border" />
+        </div>
+      </Reveal>
+      <CaseStudyBlock />
+
+      <Reveal delay={140}>
+        <div className="mt-16 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
+          <span className="text-muted">Projects</span>
+          <span className="h-px w-5 bg-border" />
+        </div>
+      </Reveal>
       <ProjectGrid />
 
       <div className="mt-12">

@@ -1,5 +1,6 @@
 import {
   projects,
+  caseStudies,
   capabilities,
   stackGroups,
   profile,
@@ -18,6 +19,20 @@ type Passage = {
 };
 
 const passages: Passage[] = [
+  ...caseStudies.map((c) => ({
+    id: `case-${c.slug}`,
+    label: c.title,
+    href: `/work/${c.slug}`,
+    text: `${c.title} is one of my case studies, a ${c.kind} project from ${c.year}. ${c.summary}`,
+    keywords: [
+      c.title,
+      "case study",
+      ...c.kind.split(/[^a-z]+/i),
+      ...c.stack,
+      ...c.accentStack,
+      c.tagline,
+    ].map((s) => s.toLowerCase()),
+  })),
   ...projects.map((p) => ({
     id: `project-${p.slug}`,
     label: p.title,
@@ -91,7 +106,7 @@ const passages: Passage[] = [
     id: "experience",
     label: "Work",
     href: "/work",
-    text: "I've been building for 3+ years and shipped six projects that are live, spanning real-time systems, AI retrieval, and full products people actually use. The Work and Stack pages have the details.",
+    text: "I've been building for 3+ years, with work that's live in production, from a couple of in-depth case studies to real-time systems, AI retrieval, and full products people actually use. The Work and Stack pages have the details.",
     keywords: ["experience", "years", "long", "seniority", "senior", "junior", "many", "shipped", "track", "record", "portfolio"],
   },
   {
@@ -149,6 +164,7 @@ const techAliases: Record<string, string> = {
 const allTech = Array.from(
   new Set([
     ...projects.flatMap((p) => p.stack),
+    ...caseStudies.flatMap((c) => c.stack),
     ...stackGroups.flatMap((g) => g.items),
     "real-time",
     "AI",
@@ -276,7 +292,7 @@ export function ask(qRaw: string): Answer {
 
   const tech = detectTech(q);
   if (tech && has(q, "know", "experience", "used", "use", "familiar", "worked", "work with", "good at", "can you", "do you", "comfortable", "proficient", "expert", "done")) {
-    const projs = projects.filter((p) =>
+    const projs = [...caseStudies, ...projects].filter((p) =>
       p.stack.some((s) => s.toLowerCase() === tech.toLowerCase()) ||
       p.kind.toLowerCase().includes(tech.toLowerCase()),
     );

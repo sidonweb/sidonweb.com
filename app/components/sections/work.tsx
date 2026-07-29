@@ -1,5 +1,6 @@
 import Reveal from "../reveal";
-import ProjectGrid from "../project-grid";
+import ProjectList from "../project-list";
+import CaseStudyBlock from "../case-study-block";
 import Button from "../button";
 import { Section, Kicker } from "./section-shell";
 
@@ -13,9 +14,26 @@ export default function Work() {
           <br className="hidden sm:block" /> and what made each one hard.
         </h2>
       </Reveal>
-      <ProjectGrid limit={4} />
+
+      <Reveal delay={100}>
+        <div className="mt-12 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
+          <span className="text-muted">Case studies</span>
+          <span className="h-px w-5 bg-border" />
+          <span>the full story behind two</span>
+        </div>
+      </Reveal>
+      <CaseStudyBlock />
+
+      <Reveal delay={100}>
+        <div className="mt-16 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
+          <span className="text-muted">Other projects</span>
+          <span className="h-px w-5 bg-border" />
+        </div>
+      </Reveal>
+      <ProjectList />
+
       <Reveal delay={120}>
-        <div className="mt-12 flex justify-start">
+        <div className="mt-10 flex justify-start">
           <Button href="/work" variant="secondary">
             See all work
           </Button>
