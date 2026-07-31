@@ -41,18 +41,13 @@ export default function Intro() {
         <div>
           <Reveal>
             <h1 className="font-display text-[clamp(2.1rem,4.6vw,3.1rem)] leading-[1.08] tracking-tight text-balance">
-              Hi, I&apos;m Siddharth. I build production-ready scalable software.
+             Hey, I'm Siddharth, a full-stack AI engineer
             </h1>
           </Reveal>
 
           <Reveal delay={140}>
             <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-muted">
-              I&apos;m a full-stack engineer in {profile.location}. Most of my time
-              goes to real-time systems and AI, and I do my best work when something
-              important has to stay up and simply can&apos;t fail. If you want someone
-              who ships fast and sweats the details that matter, I&apos;d love to hear
-              from you.
-            </p>
+               I build production-ready, performant web applications from the ground up, for real-world use, with strong backend logic and carefully crafted user interfaces. </p>
           </Reveal>
 
           <Reveal delay={200}>

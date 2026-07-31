@@ -582,7 +582,7 @@ export const stackGroups = [
 export const facts = [
   { to: 10, suffix: "+", label: "Shipped softwares" },
   { to: 4, suffix: "+", label: "Years building" },
-  { to: 40, suffix: "k", label: "Live users / event" },
+  { to: 15, suffix: "+", label: "Tech stacks" },
   { to: 50, prefix: "~", suffix: "ms", label: "Broadcast latency" },
 ];
 

@@ -91,10 +91,10 @@ export default function Contact() {
       <Reveal>
         <div className="mt-16 border-t border-border pt-8">
           <p className="text-sm leading-relaxed text-muted">
-            That&apos;s the whole thing. Thanks for looking around.
+            Thanks for stopping by.
           </p>
-          <div className="mt-4 flex items-center justify-between">
-            <span className="font-mono text-sm text-fg">— Sid</span>
+          <div className="mt-3 flex items-center justify-between">
+            <span className="font-mono text-sm text-fg">- Siddharth</span>
             <a
               href="#intro"
               className="inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-fg"

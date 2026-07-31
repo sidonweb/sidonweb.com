@@ -6,22 +6,28 @@ import { Section, Kicker } from "./section-shell";
 
 const timeline = [
   {
-    year: "Then",
-    tag: "How it started",
-    title: "Running events in college",
-    body: "I helped out, then ended up leading the teams behind them. That is where I learned shipping is mostly about people, and staying calm when the plan meets reality.",
-  },
-  {
-    year: "2023",
-    tag: "The stress test",
-    title: "IPL match days, New PCA Stadium",
-    body: "I ran e-ticketing for matches in Chandigarh. Tens of thousands of people, a two hour window, and no room for the system to blink.",
-  },
-  {
     year: "Now",
-    tag: "Where I am",
-    title: "Full-stack engineer",
-    body: "At Houston Systems, and building Raasta on the side. Most of my time goes into real-time systems and AI that take the busywork out of a workflow.",
+    tag: "Current",
+    title: "Building production software",
+    body: "I'm a full-stack engineer at Houston Systems, building software for tolling, parking, and access control systems. One of the highlights has been seeing our stadium access system in action during the 2025 and 2026 IPL seasons.",
+  },
+  {
+    year: "College",
+    tag: "Learning",
+    title: "Web development & community",
+    body: "I learned the MERN stack through online courses, built projects, completed internships, and joined the Google Developer Student Club. Being part of the core team gave me the chance to organize technical events and meet people who shared the same curiosity for technology.",
+  },
+  {
+    year: "School",
+    tag: "First steps",
+    title: "Discovering programming",
+    body: "School introduced me to HTML, CSS, basic SQL, and later Python. They were simple lessons, but they sparked my interest in programming long before I knew I wanted to become a software engineer.",
+  },
+  {
+    year: "Primitive days",
+    tag: "The beginning",
+    title: "A computer before I could use it",
+    body: "The year I was born, my family bought our first computer and a dial-up internet connection. I mostly used it to play games growing up, but looking back, it was my first introduction to technology.",
   },
 ];
 
@@ -32,7 +38,7 @@ const quickFacts = [
   { k: "Open to", v: "Full-time & freelance" },
 ];
 
-const offClock = ["Gym most evenings", "Formula 1 weekends", "A lot of films"];
+const offClock = ["🏋️ Gym most evenings", "🏎️ Formula 1 weekends", "🎬 A lot of films"];
 
 export default function About() {
   return (
@@ -49,15 +55,17 @@ export default function About() {
           <Reveal delay={80}>
             <div className="mt-6 space-y-4">
               <p className="text-[17px] leading-relaxed text-fg/90">
-                I&apos;m Siddharth. I got into tech sideways, by helping run events
-                in college and slowly ending up in charge of them. The code came
-                later. The instinct for keeping a room of moving parts calm came
-                first.
+                I&apos;m Siddharth, a full-stack engineer who enjoys building products that
+                solve real problems. My interest in technology started early, but it was
+                during college that I discovered web development, started building projects,
+                and realized this was what I wanted to do.
               </p>
+
               <p className="text-[15px] leading-relaxed text-muted">
-                These days I build across the TypeScript stack, mostly real-time
-                systems and AI features, the kind of thing that has to keep working
-                while people are actually depending on it.
+                Today I build production software across JavaScript and Python, but my
+                interest is where software engineering meets AI. I'm focused on building
+                agentic systems with LangGraph, RAG, tool calling, and structured workflows
+                that can reason, take actions, and integrate with real production systems.
               </p>
             </div>
           </Reveal>
@@ -112,22 +120,26 @@ export default function About() {
       <Reveal>
         <div className="bg-grid relative mt-16 overflow-hidden rounded-2xl border border-border bg-bg-2 p-8 sm:p-12">
           <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-            The one that taught me the most
+            A memorable experience
           </div>
+
           <div className="mt-4 flex items-end gap-4">
             <div className="font-display text-[clamp(3.5rem,12vw,7.5rem)] font-semibold leading-[0.9] tracking-tight text-fg">
-              <CountUp to={40000} duration={1800} />
+              <CountUp to={100000} duration={1800} />
             </div>
             <div className="mb-2 font-display text-2xl text-faint">+</div>
           </div>
+
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted">
-            people through the gates in a couple of hours. That was the e-ticketing
-            I ran for IPL match days at the New PCA Stadium in Chandigarh. When
-            something goes wrong there, you cannot roll back, you cannot put up a
-            maintenance page. You stay calm and you keep the line moving.
+            During the 2025 and 2026 IPL seasons, I had the opportunity to see our
+            stadium access system at the New PCA Stadium in Chandigarh being used by
+            over 100,000 attendees across match days. Watching software I'd worked on
+            operate in a real, high-traffic environment gave me a completely different
+            perspective on building reliable systems.
           </p>
+
           <p className="mt-4 font-display text-lg font-medium text-fg">
-            That is the whole reason I build the way I do.
+            It reminded me that good software disappears into the experience.
           </p>
         </div>
       </Reveal>
