@@ -5,12 +5,18 @@ import Reveal from "./reveal";
 import Button from "./button";
 import type { CaseStudy } from "../lib/data";
 
-function Figure({ caption }: { caption: string }) {
+function Figure({ caption, image }: { caption: string; image?: string }) {
   return (
     <figure className="mt-8 overflow-hidden rounded-2xl border border-border bg-bg-2">
-      <div className="flex aspect-[16/9] items-center justify-center">
-        <ImageIcon className="h-6 w-6 text-border-strong" />
-      </div>
+      {image ? (
+        <div className="relative aspect-[16/9] w-full overflow-hidden">
+          <Image src={image} alt={caption} fill sizes="(max-width: 896px) 100vw, 896px" className="object-cover" />
+        </div>
+      ) : (
+        <div className="flex aspect-[16/9] items-center justify-center">
+          <ImageIcon className="h-6 w-6 text-border-strong" />
+        </div>
+      )}
       <figcaption className="border-t border-border px-4 py-3 text-[12.5px] leading-relaxed text-muted">
         {caption}
       </figcaption>
@@ -190,7 +196,7 @@ export default function CaseStudyDetail({
                 </ol>
               )}
 
-              {s.figure && <Figure caption={s.figure} />}
+              {s.figure && <Figure caption={s.figure} image={s.image} />}
             </section>
           </Reveal>
         ))}

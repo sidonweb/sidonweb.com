@@ -168,6 +168,7 @@ export type CaseStudy = {
     bullets?: string[];
     steps?: { label: string; body: string }[];
     figure?: string;
+    image?: string;
   }[];
   comparison?: {
     title: string;
@@ -312,6 +313,7 @@ export const caseStudies: CaseStudy[] = [
       "An agent that reads a live A/B test the way a data analyst would: it opens both variants in a real browser, works out what changed, pulls the event data, runs the statistics, and returns a Scale, Continue, Stop, or Rollback call a PM can act on immediately.",
     lead:
       "Greenlight reads a live A/B test the way a data analyst would. It opens both variants in a real browser, works out what actually changed, pulls the event data, runs the statistics, and hands a PM a Scale, Continue, Stop, or Rollback call they can act on immediately. No dashboard full of charts to interpret alone, no waiting on an analyst's queue. I designed the agent's decision pipeline and built the system end to end: backend, agent, and dashboard.",
+    image: "/photos/greenlight-thumbnail.png",
     accentStack: ["LangGraph", "FastAPI", "Read-only SQL"],
     stack: ["FastAPI", "LangGraph", "Claude", "Playwright MCP", "PostgreSQL", "React", "Docker"],
     meta: [
@@ -331,6 +333,7 @@ export const caseStudies: CaseStudy[] = [
           "The Copilot exists to close that gap. Not another chart to stare at, a verdict, with the reasoning attached, the moment enough data exists to trust it.",
         ],
         figure: "A decision card in chat: the verdict, its confidence, and the reasoning behind it.",
+        image: "/photos/greenlight-img5.png",
       },
       {
         n: "02",
@@ -354,6 +357,7 @@ export const caseStudies: CaseStudy[] = [
           "The Copilot is a single LangGraph agent a PM talks to like a colleague. The design choice that makes it trustworthy, not just impressive, is a strict boundary: the agent can look, reason, and decide which metric matters, but it never computes the statistics itself. The z-test and the Scale, Continue, Stop, or Rollback rule live in plain, deterministic code the model cannot touch. Ask it the same question on the same data twice and the number never moves, only the explanation might read a little differently.",
         ],
         figure: "The chat interface mid-conversation, with the agent explaining its reasoning.",
+        image: "/photos/greenlight-chat.png",
       },
       {
         n: "04",
@@ -377,6 +381,7 @@ export const caseStudies: CaseStudy[] = [
           "A PM acting on a Scale or Rollback call is making a real business decision, so it cannot be something they take on faith. The statistics module runs a two-proportion z-test against the exact counts the data sub-agent pulled, and the verdict rules are a fixed table, not a judgment the model makes fresh each time. Every decision comes back with the p-value, the uplift, and the actual SQL that ran, so a skeptical PM can check the work in seconds.",
         ],
         figure: "The Apply Recommendation modal: verdict, confidence, and the option to update the traffic split.",
+        image: "/photos/greenlight-img4.png",
       },
       {
         n: "06",
@@ -395,6 +400,7 @@ export const caseStudies: CaseStudy[] = [
           "This is the part most AI analytics tools skip. The Copilot's SQL access runs as a dedicated read-only Postgres role, not the app's normal database user, with three independent layers stopping it from doing damage. The query has to start with SELECT or it is rejected before running. A second check blocks any write keyword even if it slips past the first. A row limit is enforced even when the agent does not ask for one. Underneath all of it, the role itself has no write grants, so even a bug in the app layer cannot turn into a mutation.",
         ],
         figure: "The architecture: the read-only agent role, isolated from any write path.",
+        image: "/photos/greenlight-architecture.png",
       },
       {
         n: "08",
