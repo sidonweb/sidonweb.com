@@ -10,6 +10,7 @@ import { useScrollSpy, scrollToSection } from "./use-scroll-spy";
 import Button from "./button";
 import LocalTime from "./local-time";
 import NavStatus from "./nav-status";
+import ThemeToggle from "./theme-toggle";
 
 function useGoToSection() {
   const pathname = usePathname();
@@ -135,8 +136,11 @@ export default function Sidebar() {
         <NavList />
 
         <div className="space-y-4">
-          <div className="text-[12.5px] leading-relaxed text-faint">
-            Open to work, worldwide.
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[12.5px] leading-relaxed text-faint">
+              Open to work, worldwide.
+            </span>
+            <ThemeToggle />
           </div>
           <Button
             href={links.resumeUrl}

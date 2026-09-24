@@ -7,6 +7,7 @@ import AskWidget from "./components/ask-widget";
 import ScrollReset from "./components/scroll-reset";
 import { SITE_URL, structuredData } from "./lib/seo";
 import { getBlogPosts } from "./lib/posts";
+import { themeInitScript } from "./lib/theme";
 // @ts-ignore
 import "./globals.css";
 
@@ -88,7 +89,6 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
   width: "device-width",
   initialScale: 1,
 };
@@ -103,8 +103,9 @@ export default function RootLayout({
     title: p.metadata.title,
   }));
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

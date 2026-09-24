@@ -52,6 +52,12 @@ citations. On-brand (mirrors Sid's DocMind RAG project).
 
 - **Theme: dark.** Tokens in `app/globals.css` `@theme`. Neutral near-black palette
   (`bg #0a0a0b`, `surface #141417`, `fg #fafafa`, `muted #a1a1ab`, `faint #6d6d77`).
+- **Light mode.** `:root[data-theme="light"]` in `globals.css` redefines the same tokens, so
+  utilities follow automatically — use tokens, never raw white/black. `lib/theme.ts` holds an
+  inline `<head>` script that sets `data-theme` before paint (saved choice → OS preference)
+  and owns the single `theme-color` meta. The day/night switch is
+  `components/theme-toggle.tsx` (sidebar footer + mobile menu header), styled by the
+  `.theme-toggle` rules in `globals.css`.
 - **Colour is semantic, used sparingly:**
   - **Blue `#3b82f6`** (`--color-accent`) — the only primary accent: CTAs, active nav,
     links, focus, selection. Decorative index numbers are neutral, not accent.

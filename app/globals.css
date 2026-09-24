@@ -39,6 +39,37 @@
 @layer base {
   :root {
     color-scheme: dark;
+    /* Near-black brand marks are lightened so they read on dark surfaces. */
+    --color-logo-ink: #e8e8ec;
+    --color-grid-line: rgba(255, 255, 255, 0.045);
+  }
+
+  /* Light theme — same token names, so every utility follows automatically. */
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --color-bg: #fafaf9;
+    --color-bg-2: #f3f3f4;
+    --color-surface: #ffffff;
+    --color-surface-2: #f3f3f5;
+    --color-surface-3: #e6e6ea;
+    --color-border: #e3e3e8;
+    --color-border-strong: #cfcfd6;
+    --color-border-soft: #ededf0;
+    --color-fg: #0a0a0b;
+    --color-muted: #52525b;
+    --color-faint: #767680;
+
+    --color-accent: #2563eb;
+    --color-accent-strong: #1d4ed8;
+    --color-accent-dim: #767680;
+    --color-accent-fg: #ffffff;
+
+    --color-success: #059669;
+    --color-warning: #d97706;
+    --color-danger: #dc2626;
+
+    --color-logo-ink: #18181b;
+    --color-grid-line: rgba(10, 10, 11, 0.06);
   }
 
   * {
@@ -125,8 +156,8 @@
   /* Grid texture panel */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
     background-size: 44px 44px;
   }
 
@@ -221,5 +252,211 @@
   }
   .duotone {
     transition: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Theme                                                               */
+/* ------------------------------------------------------------------ */
+
+/* Blog prose: `prose-invert` handles dark; remap its palette for light.
+   Unlayered so it beats the typography plugin's utilities. */
+:root[data-theme="light"] .prose {
+  --tw-prose-invert-body: #3f3f46;
+  --tw-prose-invert-headings: var(--color-fg);
+  --tw-prose-invert-lead: #52525b;
+  --tw-prose-invert-links: var(--color-accent-strong);
+  --tw-prose-invert-bold: var(--color-fg);
+  --tw-prose-invert-counters: #71717a;
+  --tw-prose-invert-bullets: #c4c4cc;
+  --tw-prose-invert-hr: var(--color-border);
+  --tw-prose-invert-quotes: #3f3f46;
+  --tw-prose-invert-quote-borders: var(--color-border);
+  --tw-prose-invert-captions: #71717a;
+  --tw-prose-invert-kbd: var(--color-fg);
+  --tw-prose-invert-kbd-shadows: 10 10 11;
+  --tw-prose-invert-code: #18181b;
+  --tw-prose-invert-pre-code: #27272a;
+  --tw-prose-invert-pre-bg: var(--color-bg-2);
+  --tw-prose-invert-th-borders: #d4d4d8;
+  --tw-prose-invert-td-borders: var(--color-border);
+}
+
+/* While switching, snap every colour at once (except the toggle itself)
+   so elements with their own transitions don't fade at different speeds. */
+.theme-switching *:not(.theme-toggle, .theme-toggle *),
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+/* Day ⇄ night switch. Default (no attribute / dark) renders night. */
+.theme-toggle {
+  --tt-w: 56px;
+  --tt-h: 30px;
+  --tt-knob: 22px;
+  --tt-pad: 3px;
+  --tt-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--tt-w);
+  height: var(--tt-h);
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  background: linear-gradient(160deg, #1e1b4b 0%, #0b1026 100%);
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.55),
+    0 0 0 1px var(--color-border-strong);
+  transition: box-shadow 0.3s ease;
+}
+.theme-toggle:hover {
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.55),
+    0 0 0 1px var(--color-faint);
+}
+
+/* Day sky fades in over the night sky */
+.theme-toggle .tt-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #7dd3fc 0%, #38bdf8 55%, #0ea5e9 100%);
+  opacity: 0;
+  transition: opacity 0.6s var(--tt-ease);
+}
+
+.theme-toggle .tt-star {
+  position: absolute;
+  border-radius: 999px;
+  background: #fff;
+  transition:
+    transform 0.6s var(--tt-ease),
+    opacity 0.45s ease;
+}
+.theme-toggle .tt-star:nth-child(2) { top: 7px;  left: 10px; width: 2px;   height: 2px;   }
+.theme-toggle .tt-star:nth-child(3) { top: 17px; left: 17px; width: 1.5px; height: 1.5px; opacity: 0.8; transition-delay: 60ms; }
+.theme-toggle .tt-star:nth-child(4) { top: 11px; left: 23px; width: 1px;   height: 1px;   opacity: 0.7; transition-delay: 120ms; }
+.theme-toggle .tt-star:nth-child(5) { top: 21px; left: 8px;  width: 1px;   height: 1px;   opacity: 0.6; transition-delay: 90ms; }
+
+.theme-toggle .tt-cloud {
+  position: absolute;
+  right: 7px;
+  bottom: 6px;
+  width: 14px;
+  height: 5px;
+  border-radius: 999px;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    transform 0.6s var(--tt-ease),
+    opacity 0.4s ease;
+}
+.theme-toggle .tt-cloud::before,
+.theme-toggle .tt-cloud::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  background: #fff;
+}
+.theme-toggle .tt-cloud::before { width: 7px; height: 7px; left: 2px; bottom: 2px; }
+.theme-toggle .tt-cloud::after  { width: 6px; height: 6px; left: 6px; bottom: 3px; }
+.theme-toggle .tt-cloud--2 {
+  right: 17px;
+  bottom: 17px;
+  transform: translateY(12px) scale(0.7);
+  transition-delay: 80ms;
+}
+
+.theme-toggle .tt-knob {
+  position: absolute;
+  top: var(--tt-pad);
+  left: var(--tt-pad);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--tt-knob);
+  height: var(--tt-knob);
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #334155;
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.35),
+    inset -2px -2px 4px rgba(15, 23, 42, 0.18);
+  transform: translateX(calc(var(--tt-w) - var(--tt-knob) - var(--tt-pad) * 2));
+  transition:
+    transform 0.6s var(--tt-ease),
+    background-color 0.6s ease,
+    color 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+.theme-toggle .tt-icon {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  transition:
+    transform 0.6s var(--tt-ease),
+    opacity 0.35s ease;
+}
+.theme-toggle .tt-sun {
+  opacity: 0;
+  transform: rotate(-120deg) scale(0.4);
+}
+.theme-toggle .tt-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* ---- Day ---- */
+:root[data-theme="light"] .theme-toggle {
+  box-shadow:
+    inset 0 1px 3px rgba(2, 132, 199, 0.45),
+    0 0 0 1px var(--color-border-strong);
+}
+:root[data-theme="light"] .theme-toggle:hover {
+  box-shadow:
+    inset 0 1px 3px rgba(2, 132, 199, 0.45),
+    0 0 0 1px var(--color-faint);
+}
+:root[data-theme="light"] .theme-toggle .tt-sky {
+  opacity: 1;
+}
+:root[data-theme="light"] .theme-toggle .tt-star {
+  opacity: 0;
+  transform: translateY(-14px);
+}
+:root[data-theme="light"] .theme-toggle .tt-cloud {
+  opacity: 1;
+  transform: none;
+}
+:root[data-theme="light"] .theme-toggle .tt-cloud--2 {
+  opacity: 0.85;
+  transform: scale(0.7);
+}
+:root[data-theme="light"] .theme-toggle .tt-knob {
+  background: #fcd34d;
+  color: #b45309;
+  box-shadow:
+    0 0 0 3px rgba(253, 224, 71, 0.35),
+    0 2px 6px rgba(180, 83, 9, 0.35);
+  transform: translateX(0);
+}
+:root[data-theme="light"] .theme-toggle .tt-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+:root[data-theme="light"] .theme-toggle .tt-moon {
+  opacity: 0;
+  transform: rotate(120deg) scale(0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle * {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
   }
 }

@@ -13,6 +13,7 @@ import {
 import { navItems, blogsNav, NavIcon, SECTION_IDS } from "./nav-items";
 import { useScrollSpy, scrollToSection } from "./use-scroll-spy";
 import { socials, links } from "../lib/data";
+import ThemeToggle from "./theme-toggle";
 
 export default function MobileDock() {
   const pathname = usePathname();
@@ -94,12 +95,15 @@ export default function MobileDock() {
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-faint">
             Menu
           </span>
-          <span
-            ref={pctRef}
-            className="font-mono text-[11px] tabular-nums text-faint"
-          >
-            00%
-          </span>
+          <div className="flex items-center gap-4">
+            <span
+              ref={pctRef}
+              className="font-mono text-[11px] tabular-nums text-faint"
+            >
+              00%
+            </span>
+            <ThemeToggle tabIndex={open ? 0 : -1} />
+          </div>
         </div>
 
         <nav aria-label="Sections" className="flex flex-1 flex-col justify-center gap-1 px-6">
@@ -246,7 +250,7 @@ export default function MobileDock() {
               onClick={() => window.dispatchEvent(new Event("open-ask"))}
               aria-label="Ask about Sid"
               tabIndex={open ? -1 : 0}
-              className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-bg shadow-[0_12px_34px_-14px_rgba(0,0,0,0.8)] transition-transform active:scale-95"
+              className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-fg text-bg shadow-[0_12px_34px_-14px_rgba(0,0,0,0.8)] transition-transform active:scale-95"
             >
               <MessageCircleMore className="h-[22px] w-[22px]" strokeWidth={2} />
             </button>
