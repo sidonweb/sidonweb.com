@@ -6,6 +6,7 @@ import Button from "../button";
 import GithubHeatmap from "../github-heatmap";
 import { Section } from "./section-shell";
 import { profile, facts, links } from "../../lib/data";
+import Link from "next/link";
 
 export default function Intro() {
   return (
@@ -41,13 +42,20 @@ export default function Intro() {
         <div>
           <Reveal>
             <h1 className="font-display text-[clamp(2.1rem,4.6vw,3.1rem)] leading-[1.08] tracking-tight text-balance">
-             Hey, I'm Siddharth, a full-stack AI engineer
+              Hey, I'm Siddharth.
             </h1>
           </Reveal>
 
           <Reveal delay={140}>
             <p className="mt-5 max-w-md text-[15.5px] leading-relaxed text-muted">
-               I build production-ready, performant web applications from the ground up, for real-world use, with strong backend logic and carefully crafted user interfaces. </p>
+              I'm a 24-year-old full-stack engineer based in Greater Noida, India, currently at{" "}
+              <Link target="_blank" href="https://houstonsystems.in" className="text-accent-strong">
+                Houston Systems
+              </Link>
+              , a security automation company. I work across the JavaScript/TypeScript ecosystem
+              (React, Next.js, Node.js, and more), shipping software that runs reliably in
+              high-pressure, mission-critical environments.
+            </p>
           </Reveal>
 
           <Reveal delay={200}>
@@ -87,7 +95,7 @@ export default function Intro() {
                   full-stack engineer
                 </div>
               </div>
-              <span className="font-mono text-[10px] text-white/50">IN · 28.5°N</span>
+              <span className="font-mono text-[10px] text-white/50">30.069802 N, 80.174869 S</span>
             </figcaption>
           </figure>
         </Reveal>
@@ -106,7 +114,7 @@ export default function Intro() {
         </dl>
       </Reveal>
 
-      <Reveal>
+      {/* <Reveal>
         <div className="mt-12 grid gap-3 sm:grid-cols-2">
           {profile.now.map((n) => (
             <a
@@ -117,9 +125,8 @@ export default function Intro() {
               className="group flex items-center gap-4 rounded-2xl border border-border bg-surface p-4 transition-colors hover:border-border-strong hover:bg-surface-2"
             >
               <span
-                className={`relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-border ${
-                  n.contain ? "bg-white" : "bg-bg-2"
-                }`}
+                className={`relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-border ${n.contain ? "bg-white" : "bg-bg-2"
+                  }`}
               >
                 <Image
                   src={n.logo}
@@ -144,7 +151,7 @@ export default function Intro() {
             </a>
           ))}
         </div>
-      </Reveal>
+      </Reveal> */}
 
       <Reveal>
         <div className="mt-12">

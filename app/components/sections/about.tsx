@@ -3,6 +3,7 @@ import Reveal from "../reveal";
 import CountUp from "../count-up";
 import ReviewsMarquee from "../reviews-marquee";
 import { Section, Kicker } from "./section-shell";
+import Link from "next/link";
 
 const timeline = [
   {
@@ -49,23 +50,17 @@ export default function About() {
         <div>
           <Reveal>
             <h2 className="font-display text-[2rem] font-semibold leading-[1.08] tracking-tight text-balance sm:text-[2.6rem]">
-              Most of the work is about people, not code.
+              Most of the engineering is judgment, not syntax.
             </h2>
           </Reveal>
           <Reveal delay={80}>
             <div className="mt-6 space-y-4">
               <p className="text-[17px] leading-relaxed text-fg/90">
-                I&apos;m Siddharth, a full-stack engineer who enjoys building products that
-                solve real problems. My interest in technology started early, but it was
-                during college that I discovered web development, started building projects,
-                and realized this was what I wanted to do.
+                At Houston Systems, I build software for tolling, parking, and access control, the kind of systems people pass through without noticing. That's the goal. When a stadium gate is scanning tickets for an IPL crowd, nobody cares what framework it runs on. They care that the gate opens. Working on that taught me that the real work happens around the code: what can fail, what happens when it does, and what's simple enough to trust under pressure.
               </p>
 
               <p className="text-[15px] leading-relaxed text-muted">
-                Today I build production software across JavaScript and Python, but my
-                interest is where software engineering meets AI. I'm focused on building
-                agentic systems with LangGraph, RAG, tool calling, and structured workflows
-                that can reason, take actions, and integrate with real production systems.
+                Most of what I write is MERN, but four years of building have taken me well beyond it, and I choose tools based on the problem, not habit. Lately, that's led me to AI. I've been building agentic apps with LangGraph, RAG, and tool calling, and it's the most fun I've had writing software in a while. You can see what I've built in <Link href="/work" className="text-accent-strong">work</Link>.
               </p>
             </div>
           </Reveal>
