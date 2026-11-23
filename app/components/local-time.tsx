@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -13,16 +14,28 @@ export default function LocalTime() {
         minute: "2-digit",
         timeZone: profile.timezone,
       }).format(new Date());
+
       setTime(t);
     };
+
     tick();
+
     const id = setInterval(tick, 20_000);
     return () => clearInterval(id);
   }, []);
 
+  const currentTime = time ?? "--:--";
+
   return (
-    <span className="tabular-nums">
-      {time ?? "--:--"} <span className="text-faint/70">IST</span>
+    <span
+      className="tabular-nums"
+      title={`Current time in ${profile.location} is ${currentTime}`}
+      aria-label={`Current time in ${profile.location} is ${currentTime}`}
+    >
+      {currentTime}{" "}
+      <span className="text-faint/70">
+        {profile.timezone === "Asia/Kolkata" ? "IST" : profile.timezone}
+      </span>
     </span>
   );
 }

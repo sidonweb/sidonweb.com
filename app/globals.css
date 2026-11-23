@@ -167,7 +167,7 @@
     transition: filter 0.6s ease;
   }
   .group:hover .duotone {
-    filter: grayscale(0.4) contrast(1);
+    filter: grayscale(0.2) contrast(1);
   }
 
   /* Availability pulse */

@@ -43,23 +43,20 @@ function NavList() {
             aria-current={on ? "true" : undefined}
           >
             <span
-              className={`absolute -left-8 h-6 w-[3px] rounded-r-full bg-accent transition-all duration-300 ${
-                on ? "opacity-100" : "opacity-0"
-              }`}
+              className={`absolute -left-8 h-6 w-[3px] rounded-r-full bg-accent transition-all duration-300 ${on ? "opacity-100" : "opacity-0"
+                }`}
             />
             <span
-              className={`w-4 shrink-0 font-mono text-[11px] tabular-nums transition-colors ${
-                on ? "text-accent" : "text-faint group-hover:text-muted"
-              }`}
+              className={`w-4 shrink-0 font-mono text-[11px] tabular-nums transition-colors ${on ? "text-accent" : "text-faint group-hover:text-muted"
+                }`}
             >
               {item.key}
             </span>
             <span
-              className={`font-display text-[23px] font-semibold leading-tight tracking-tight transition-all duration-300 ${
-                on
+              className={`font-display text-[23px] font-semibold leading-tight tracking-tight transition-all duration-300 ${on
                   ? "text-fg"
                   : "text-faint group-hover:translate-x-0.5 group-hover:text-muted"
-              }`}
+                }`}
             >
               {item.label}
             </span>
@@ -75,23 +72,20 @@ function NavList() {
         aria-current={onBlogs ? "true" : undefined}
       >
         <span
-          className={`absolute -left-8 h-6 w-[3px] rounded-r-full bg-accent transition-all duration-300 ${
-            onBlogs ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute -left-8 h-6 w-[3px] rounded-r-full bg-accent transition-all duration-300 ${onBlogs ? "opacity-100" : "opacity-0"
+            }`}
         />
         <span
-          className={`flex w-4 shrink-0 items-center transition-colors ${
-            onBlogs ? "text-accent" : "text-faint group-hover:text-muted"
-          }`}
+          className={`flex w-4 shrink-0 items-center transition-colors ${onBlogs ? "text-accent" : "text-faint group-hover:text-muted"
+            }`}
         >
           <ArrowUpRight className="h-3.5 w-3.5" />
         </span>
         <span
-          className={`font-display text-[23px] font-semibold leading-tight tracking-tight transition-all duration-300 ${
-            onBlogs
+          className={`font-display text-[23px] font-semibold leading-tight tracking-tight transition-all duration-300 ${onBlogs
               ? "text-fg"
               : "text-faint group-hover:translate-x-0.5 group-hover:text-muted"
-          }`}
+            }`}
         >
           {blogsNav.label}
         </span>
@@ -137,21 +131,19 @@ export default function Sidebar() {
 
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-3">
-            <span className="text-[12.5px] leading-relaxed text-faint">
-              Open to work, worldwide.
-            </span>
             <ThemeToggle />
+            <Button
+              href={links.resumeUrl}
+              external
+              variant="secondary"
+              size="sm"
+              className="w-full"
+            >
+              Resume <Download className="h-4 w-4 text-faint" />
+            </Button>
           </div>
-          <Button
-            href={links.resumeUrl}
-            external
-            variant="secondary"
-            size="sm"
-            className="w-full"
-          >
-            Resume <Download className="h-4 w-4 text-faint" />
-          </Button>
-          <div className="flex flex-wrap gap-x-4 gap-y-1">
+
+          <div className="flex justify-between flex-wrap gap-x-4 gap-y-1">
             {socials.map((s) => (
               <a
                 key={s.label}

@@ -21,10 +21,10 @@ import { Section, Kicker } from "./section-shell";
 import { capabilities, dailyDrivers } from "../../lib/data";
 
 const blurbs: Record<string, string> = {
-  "Real-time systems": "Durable queues and live sync that don't drop data when a server falls over.",
-  "AI & retrieval": "RAG you can measure, with answers that trace back to a real source.",
-  "Full-stack product": "Schema to interface, shipped as fast, installable, real things.",
-  "Dashboards & tools": "Tools that make the state of a system obvious at a glance.",
+  "Websites & frontend": "Responsive sites and web apps built with React and Next.js.",
+  "AI & agents": "LLM-powered apps and agents that call APIs, use tools, and work with your data.",
+  "Full-stack products": "Node.js backends, databases, and frontends, built and deployed together.",
+  "Dashboards & tools": "Real-time dashboards and internal tools for monitoring and managing systems.",
 };
 
 const techStrip = [
@@ -52,14 +52,8 @@ export default function Stack() {
 
       <Reveal delay={60}>
         <h2 className="mt-6 max-w-3xl font-display text-[clamp(1.7rem,3.6vw,2.5rem)] leading-[1.14] tracking-tight text-balance">
-          Full-stack across the TypeScript world, with two things I go deep on.
+          The tools I use in my work, and the kinds of problems I solve with them.
         </h2>
-      </Reveal>
-      <Reveal delay={110}>
-        <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted">
-          Real-time systems and AI retrieval are where I do my strongest work. Here
-          is what that means in practice, and the tools I trust to get there.
-        </p>
       </Reveal>
 
       <Reveal>

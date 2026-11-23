@@ -437,24 +437,24 @@ export const caseStudies: CaseStudy[] = [
 
 export const capabilities = [
   {
-    title: "Real-time systems",
-    body: "Event-driven pipelines, durable queues, and live sync that hold up when a server goes down or the load spikes.",
-    tags: ["Kafka", "WebSockets", "Postgres", "Docker"],
+    title: "Websites & frontend",
+    body: "Responsive sites and web apps built with React and Next.js. Clean UI, quick load times, and layouts that hold up on phones too.",
+    tags: ["React", "Next.js", "Tailwind", "TypeScript"],
   },
   {
-    title: "AI & retrieval",
-    body: "RAG pipelines and AI features built for verifiability, with retrieval you can measure and answers you can trace to a source.",
-    tags: ["OpenAI", "pgvector", "LangChain", "Python"],
+    title: "AI & agents",
+    body: "LLM-powered apps and agents that call APIs, use tools, and work with your data. Mostly built in Python with LangChain and LangGraph.",
+    tags: ["LangChain", "LangGraph", "OpenAI", "Python"],
   },
   {
-    title: "Full-stack product",
-    body: "End-to-end products on the TypeScript stack, from schema to interface, shipped as fast, installable, real things people use.",
-    tags: ["Next.js", "React", "TypeScript", "Prisma"],
+    title: "Full-stack products",
+    body: "Node.js backends, databases, and frontends, built and deployed together. I handle the API, the data model, and the UI on top of it.",
+    tags: ["Node.js", "Express", "MongoDB", "Docker"],
   },
   {
     title: "Dashboards & tools",
-    body: "Operational dashboards and internal tools that take the repetitive work out of a workflow and make the state of things obvious.",
-    tags: ["Recharts", "SVG", "shadcn/ui", "Tailwind"],
+    body: "Real-time dashboards and internal tools for monitoring and managing systems. Live data over WebSockets, so teams see changes as they happen.",
+    tags: ["Recharts", "shadcn/ui", "WebSockets", "Redis"],
   },
 ];
 
@@ -473,7 +473,7 @@ export const testimonials: Testimonial[] = [
     highlight: "The one I keep going back to.",
     quote:
       "I've hired a lot of developers and Sid is the one I keep going back to. He picked up our half-finished codebase, understood it faster than I expected, and had the real-time sync working within the week.",
-    name: "A. Mehta",
+    name: "Anshul Sharma",
     role: "Product Lead",
     avatar: null,
     rating: 5,
@@ -482,8 +482,8 @@ export const testimonials: Testimonial[] = [
     highlight: "Nailed what I hadn't even explained.",
     quote:
       "Sid built our internal dashboard from a two-line brief and somehow nailed the parts I hadn't even explained yet. Fast, tidy, and he actually documented everything. I'd bring him back in a heartbeat.",
-    name: "R. Kapoor",
-    role: "Founder",
+    name: "Kalika Singh",
+    role: "Team Lead",
     avatar: null,
     rating: 5,
   },
@@ -491,8 +491,8 @@ export const testimonials: Testimonial[] = [
     highlight: "Calm when the requirements shifted.",
     quote:
       "What I appreciated most was how calm he stayed when the requirements shifted halfway through. No drama, no missed deadlines. The final build was cleaner than what we asked for.",
-    name: "N. D'Souza",
-    role: "Engineering Manager",
+    name: "Matt Ferguson",
+    role: "Founder",
     avatar: null,
     rating: 5,
   },
@@ -500,8 +500,8 @@ export const testimonials: Testimonial[] = [
     highlight: "Shipped in a week, still up.",
     quote:
       "Sid shipped a real-time feature we'd been stuck on for a month in about a week, and it hasn't gone down since. He asks the right questions before writing a single line of code.",
-    name: "S. Iyer",
-    role: "CTO",
+    name: "Harshal Savarkar",
+    role: "Founder, Medymatic",
     avatar: null,
     rating: 5,
   },
@@ -509,8 +509,8 @@ export const testimonials: Testimonial[] = [
     highlight: "Reliable is the word.",
     quote:
       "Reliable is the word. Clear updates, clean code, and he genuinely cared whether the thing worked for our users, not just whether it compiled.",
-    name: "J. Fernandes",
-    role: "Founder",
+    name: "Kartik Singh",
+    role: "Solopreneur",
     avatar: null,
     rating: 5,
   },
@@ -519,7 +519,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "Rare to find an engineer who respects design this much. He built the handoff pixel for pixel and even caught edge cases I had missed.",
     name: "P. Nair",
-    role: "Design Lead",
+    role: "Armaan Parvez",
     avatar: null,
     rating: 5,
   },
@@ -527,8 +527,8 @@ export const testimonials: Testimonial[] = [
     highlight: "Launched on time, no drama.",
     quote:
       "Fast, communicative, and unusually calm under a tight deadline. We launched on time and I would bring him back without thinking twice.",
-    name: "M. Rahman",
-    role: "Product Manager",
+    name: "Shakil Khan",
+    role: "Sales Director",
     avatar: null,
     rating: 5,
   },
@@ -536,8 +536,8 @@ export const testimonials: Testimonial[] = [
     highlight: "Took ownership from day one.",
     quote:
       "He took ownership from day one. I stopped worrying about the backend entirely, which is exactly what you want from someone you hire.",
-    name: "K. Verma",
-    role: "Founder",
+    name: "Luis Rodríguez",
+    role: "Spanish startup founder",
     avatar: null,
     rating: 4,
   },
@@ -589,7 +589,7 @@ export const facts = [
   { to: 10, suffix: "+", label: "Shipped softwares" },
   { to: 4, suffix: "+", label: "Years building" },
   { to: 15, suffix: "+", label: "Tech stacks" },
-  { to: 50, prefix: "~", suffix: "ms", label: "Broadcast latency" },
+  { to: 13, suffix: "+", label: "Clients served, worldwide" },
 ];
 
 // Pre-launch: set the real resumeUrl and calUrl.

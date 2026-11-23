@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Reveal from "../reveal";
-import CountUp from "../count-up";
+// import CountUp from "../count-up";
 import ReviewsMarquee from "../reviews-marquee";
 import { Section, Kicker } from "./section-shell";
 import Link from "next/link";
@@ -32,14 +32,34 @@ const timeline = [
   },
 ];
 
-const quickFacts = [
-  { k: "Based in", v: "Greater Noida, IN" },
-  { k: "Focus", v: "Real-time & AI" },
-  { k: "Currently", v: "Houston Systems" },
-  { k: "Open to", v: "Full-time & freelance" },
-];
+// const quickFacts = [
+//   { k: "Based in", v: "Greater Noida, IN" },
+//   { k: "Focus", v: "Real-time & AI" },
+//   { k: "Currently", v: "Houston Systems" },
+//   { k: "Open to", v: "Full-time & freelance" },
+// ];
 
-const offClock = ["🏋️ Gym most evenings", "🏎️ Formula 1 weekends", "🎬 A lot of films"];
+const offClock = ["📖 Reading books", "🏎️ Formula 1 weekends", "🎬 A lot of films"];
+
+const rows: (typeof timeline)[] = [];
+for (let i = 0; i < timeline.length; i += 2) rows.push(timeline.slice(i, i + 2));
+
+const Dot = () => (
+  <span className="relative z-10 grid h-4 w-4 shrink-0 place-items-center rounded-full border border-border-strong bg-bg">
+    <span className="h-2 w-2 rounded-full bg-muted" />
+  </span>
+);
+
+const Entry = ({ t }: { t: (typeof timeline)[number] }) => (
+  <>
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-strong">{t.year}</span>
+      <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-faint">{t.tag}</span>
+    </div>
+    <h4 className="mt-2.5 font-display text-xl font-semibold tracking-tight text-fg">{t.title}</h4>
+    <p className="mt-2 max-w-md text-[14.5px] leading-relaxed text-muted">{t.body}</p>
+  </>
+);
 
 export default function About() {
   return (
@@ -55,17 +75,59 @@ export default function About() {
           </Reveal>
           <Reveal delay={80}>
             <div className="mt-6 space-y-4">
-              <p className="text-[17px] leading-relaxed text-fg/90">
-                At Houston Systems, I build software for tolling, parking, and access control, the kind of systems people pass through without noticing. That's the goal. When a stadium gate is scanning tickets for an IPL crowd, nobody cares what framework it runs on. They care that the gate opens. Working on that taught me that the real work happens around the code: what can fail, what happens when it does, and what's simple enough to trust under pressure.
+              <p className="text-[15px] leading-relaxed text-muted">
+                At Houston Systems, I build software for tolling, parking, and access control, systems
+                people pass through without noticing. When a stadium gate is scanning tickets for an IPL
+                crowd, nobody cares what framework it runs on. They care that the gate opens. That taught
+                me the real work happens around the code: what can fail, what happens when it does, and
+                what's simple enough to trust.
               </p>
 
               <p className="text-[15px] leading-relaxed text-muted">
-                Most of what I write is MERN, but four years of building have taken me well beyond it, and I choose tools based on the problem, not habit. Lately, that's led me to AI. I've been building agentic apps with LangGraph, RAG, and tool calling, and it's the most fun I've had writing software in a while. You can see what I've built in <Link href="/work" className="text-accent-strong">work</Link>.
+                Outside work, I build my own products.{" "}
+                <Link
+                  href="https://yapcut.up.railway.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent-strong"
+                >
+                  YapCut
+                </Link>{" "}
+                uses AI to turn long videos into captioned vertical clips for Reels and Shorts, in English,
+                Hindi, and Hinglish. It's live with paid plans. I'm also co-founding{" "}
+                <Link
+                  href="https://raasta.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent-strong"
+                >
+                  Raasta
+                </Link>{" "}
+                with
+                <Link
+                  href="https://armaanux.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent-strong"
+                > Armaan
+                </Link>, a travel app for the parts of India most people never hear about, from how to
+                get there to what it'll cost.
+              </p>
+
+              <p className="text-[15px] leading-relaxed text-muted">
+                Most of what I write is MERN, but each project needed something different, from video
+                processing to AI agents, so I learned whatever the problem called for. AI makes it possible
+                to build almost anything faster, which makes judgment matter more. Knowing what's worth
+                building, and how to make it hold up, is still the hard part. More in{" "}
+                <Link href="/work" className="text-accent-strong">
+                  work
+                </Link>
+                .
               </p>
             </div>
           </Reveal>
 
-          <Reveal delay={140}>
+          {/* <Reveal delay={140}>
             <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">
               {quickFacts.map((f) => (
                 <div key={f.k} className="bg-surface px-4 py-3.5">
@@ -76,7 +138,7 @@ export default function About() {
                 </div>
               ))}
             </dl>
-          </Reveal>
+          </Reveal> */}
 
           <Reveal delay={180}>
             <div className="mt-6">
@@ -99,12 +161,12 @@ export default function About() {
 
         <Reveal delay={120}>
           <figure className="group relative overflow-hidden rounded-2xl border border-border bg-bg-2">
-            <div className="relative aspect-[4/5]">
+            <div className="relative aspect-[4/5] w-full">
               <Image
-                src="/profile.jpg"
+                src="/profile2.jpg"
                 alt="Siddharth Singh, full-stack engineer in Greater Noida"
                 fill
-                sizes="(max-width: 768px) 100vw, 380px"
+                sizes="(max-width: 768px) 100vw, 420px"
                 className="duotone object-cover object-top"
               />
             </div>
@@ -112,7 +174,7 @@ export default function About() {
         </Reveal>
       </div>
 
-      <Reveal>
+      {/* <Reveal>
         <div className="bg-grid relative mt-16 overflow-hidden rounded-2xl border border-border bg-bg-2 p-8 sm:p-12">
           <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
             A memorable experience
@@ -137,39 +199,77 @@ export default function About() {
             It reminded me that good software disappears into the experience.
           </p>
         </div>
-      </Reveal>
+      </Reveal> */}
 
       <h3 className="mb-10 mt-20 font-display text-xl font-semibold tracking-tight">
         The short history
       </h3>
-      <div>
+
+      {/* Mobile: vertical */}
+      <div className="md:hidden">
         {timeline.map((t, i) => {
           const last = i === timeline.length - 1;
           return (
             <Reveal key={t.title} delay={i * 70}>
-              <div className="grid grid-cols-[auto_1fr] gap-x-5 sm:gap-x-8">
+              <div className="grid grid-cols-[auto_1fr] gap-x-5">
                 <div className="flex flex-col items-center">
-                  <span className="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full border border-border-strong bg-bg">
-                    <span className="h-1.5 w-1.5 rounded-full bg-muted" />
-                  </span>
+                  <span className="mt-1"><Dot /></span>
                   {!last && <span className="w-px flex-1 bg-border" />}
                 </div>
                 <div className={last ? "pb-1" : "pb-12"}>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-fg">
-                      {t.year}
-                    </span>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
-                      {t.tag}
-                    </span>
-                  </div>
-                  <h4 className="mt-2.5 font-display text-xl font-semibold tracking-tight text-fg">
-                    {t.title}
-                  </h4>
-                  <p className="mt-2 max-w-xl text-[14.5px] leading-relaxed text-muted">
-                    {t.body}
-                  </p>
+                  <Entry t={t} />
                 </div>
+              </div>
+            </Reveal>
+          );
+        })}
+      </div>
+
+      {/* Desktop: S-shaped path */}
+      <div className="hidden md:block">
+        {rows.map((row, r) => {
+          const rtl = r % 2 === 1;
+          const lastRow = r === rows.length - 1;
+
+          // Where the horizontal line starts and ends in this row
+          const line: React.CSSProperties = { left: 0, right: 0 };
+          if (r === 0) line.left = 8;
+          if (lastRow) {
+            if (!rtl) line.right = row.length === 2 ? "calc(50% - 8px)" : "calc(100% - 8px)";
+            else line.left = row.length === 2 ? 8 : "calc(50% + 8px)";
+          }
+
+          return (
+            <Reveal key={r} delay={r * 90}>
+              <div className={`relative grid grid-cols-2 ${lastRow ? "pb-1" : "pb-16"}`}>
+                {/* Horizontal line through the dots */}
+                <span className="absolute top-2 h-px bg-border" style={line} />
+
+                {/* Curve down to the next row */}
+                {!lastRow && (
+                  <span
+                    className={`absolute top-2 w-14 border-y border-border ${rtl
+                        ? "-left-14 rounded-l-full border-l"
+                        : "-right-14 rounded-r-full border-r"
+                      }`}
+                    style={{ height: "calc(100% + 1px)" }}
+                  />
+                )}
+
+                {row.map((t, j) => {
+                  const col = rtl ? (row.length === 2 && j === 1 ? 1 : 2) : j + 1;
+                  return (
+                    <div
+                      key={t.title}
+                      className={`row-start-1 pr-10 ${col === 1 ? "col-start-1" : "col-start-2"}`}
+                    >
+                      <Dot />
+                      <div className="mt-4">
+                        <Entry t={t} />
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </Reveal>
           );

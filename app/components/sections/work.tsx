@@ -11,7 +11,7 @@ export default function Work() {
       <Reveal delay={60}>
         <h2 className="mt-5 font-display text-[2rem] leading-[1.08] tracking-tight sm:text-[2.6rem]">
           Here&apos;s what I&apos;ve built,
-          <br className="hidden sm:block" /> and what made each one hard.
+          <br className="hidden sm:block" /> and a little about them.
         </h2>
       </Reveal>
 
@@ -19,7 +19,6 @@ export default function Work() {
         <div className="mt-12 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">
           <span className="text-muted">Case studies</span>
           <span className="h-px w-5 bg-border" />
-          <span>the full story behind two</span>
         </div>
       </Reveal>
       <CaseStudyBlock />

@@ -29,12 +29,12 @@ export default function Intro() {
 
       <Reveal className="hidden lg:block">
         <div className="flex flex-wrap items-center gap-2.5 text-[13px] text-muted">
-          <span className="inline-flex items-center gap-2 text-fg">
+          <span>📍 {profile.location}</span>
+          <span className="text-border-strong">/</span>
+           <span className="inline-flex items-center gap-2 text-fg">
             <span className="pulse-dot h-2 w-2 rounded-full bg-success" />
             Available for work, worldwide
           </span>
-          <span className="text-border-strong">/</span>
-          <span>{profile.location}</span>
         </div>
       </Reveal>
 
@@ -53,8 +53,7 @@ export default function Intro() {
                 Houston Systems
               </Link>
               , a security automation company. I work across the JavaScript/TypeScript ecosystem
-              (React, Next.js, Node.js, and more), shipping software that runs reliably in
-              high-pressure, mission-critical environments.
+              (React, Next.js, Node.js, and more).
             </p>
           </Reveal>
 
@@ -90,12 +89,12 @@ export default function Intro() {
             </div>
             <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
               <div>
-                <div className="font-display text-sm text-white">Siddharth Singh</div>
+                <div className="font-display text-sm text-white">Off the Screen</div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/70">
-                  full-stack engineer
+                  Khaliya Trek, Munsyari
                 </div>
               </div>
-              <span className="font-mono text-[10px] text-white/50">30.069802 N, 80.174869 S</span>
+              <span className="font-mono text-[10px] text-white/50">30.069802 N, 80.174869 E</span>
             </figcaption>
           </figure>
         </Reveal>
@@ -106,7 +105,7 @@ export default function Intro() {
           {facts.map((f) => (
             <div key={f.label} className="bg-bg px-4 py-5">
               <dd className="font-display text-3xl font-semibold tracking-tight text-fg">
-                <CountUp to={f.to} prefix={f.prefix} suffix={f.suffix} />
+                <CountUp to={f.to} suffix={f.suffix} />
               </dd>
               <dt className="mt-1 text-[12px] leading-snug text-muted">{f.label}</dt>
             </div>
