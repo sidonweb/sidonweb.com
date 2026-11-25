@@ -211,7 +211,8 @@ export const caseStudies: CaseStudy[] = [
           "Every bank app and expense tracker can show you a list of what you spent. Almost none tell you whether that was fine. The gap is not data, most people already have the transaction history. It is turning that history into one clear decision before the month is over and the decision no longer matters.",
           "Ledgr exists to close that gap. Not a better spreadsheet, a single readable signal, with the detail behind it one tap away.",
         ],
-        figure: "The money score: 8.6 out of 10, with needs, wants, and savings measured against plan.",
+        figure: "The money score: 8 out of 10, with needs, wants, and savings measured against plan.",
+        image: "/photos/ledgrscore.png",
       },
       {
         n: "02",
@@ -235,6 +236,7 @@ export const caseStudies: CaseStudy[] = [
           "The foundation of Ledgr is the salary cycle: a budget period that runs payday to payday, not the 1st to the 31st. Every category, every trend, every score is measured against that real cycle. On track means on track for how you actually get paid, not for a calendar convention that has nothing to do with your income.",
         ],
         figure: "The salary-cycle selector, sitting next to the calendar-cycle option.",
+        image: "/photos/ledgrcycle.png",
       },
       {
         n: "04",
@@ -255,8 +257,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           "A score from 0 to 10 exists so a month is readable at a glance, not a spreadsheet you have to interpret cold. Below 5, the plan has drifted enough that the answer is fix the biggest category, not every small purchase. Between 5 and 8, parts of the plan are holding and a couple of categories need attention before the cycle closes. Above 8, needs, wants, and savings are close enough to plan that the job is protecting what already works.",
           "The score is a summary, never the whole answer. The needs, wants, and savings breakdown and the daily trend sit one tap behind it for anyone who wants to see exactly what moved it.",
-        ],
-        figure: "The three score bands: reset the plan, getting steadier, and on track.",
+        ]
       },
       {
         n: "06",
@@ -267,6 +268,7 @@ export const caseStudies: CaseStudy[] = [
           "Ledgr's assistant is grounded instead. It reasons over your own spending through fixed, read-only tools to answer a question like where did I overspend this cycle, without ever being granted a live connection to the underlying database. The assistant gets exactly the shape of data it needs to answer the question in front of it, and nothing else.",
         ],
         figure: "The Ask AI assistant answering a spending question, grounded in read-only tools.",
+        image: "/photos/ledgrai.png",
       },
       {
         n: "07",
